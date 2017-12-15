@@ -1,3 +1,21 @@
+.jumbotron {
+    background-color: #FAFAFA;
+    color: #000000;
+}
+
+.btn.btn-primary {
+    border-radius: 30px;
+    border: solid black 1px;
+    background-color: white;
+    color: black;
+}
+
+.btn.btn-primary:hover {
+    border: none;
+    background-color: black;
+    color: white;
+}
+
 .heading {
     background-color: #F9F0EB;
     padding-bottom: 5px;
@@ -10,4 +28,27 @@
 
 .btn.btn-default:hover {
     border: solid white 2px;
+}
+
+@media(max-width:767px){}
+@media(min-width:768px){
+    .ticket {
+        margin-top: 20px;
+    }
+    .container {
+        width: 750px;
+    }
+}
+@media(min-width:992px){
+    .container {
+        width: 970px;
+    }
+}
+@media(min-width:1200px){
+    .ticket {
+        margin-top: auto;
+    }
+    .container {
+        width: 1170px;
+    }
 }
