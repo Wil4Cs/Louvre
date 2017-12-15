@@ -22,14 +22,14 @@ body {
     color: #757575;
 }
 
-.btn-primary {
+.btn.btn-primary {
     border-radius: 30px;
     border: solid black 1px;
     background-color: white;
     color: black;
 }
 
-.btn-primary:hover {
+.btn.btn-primary:hover {
     border: none;
     background-color: black;
     color: white;
