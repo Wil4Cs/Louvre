@@ -3,22 +3,42 @@
 {% block title %} Page d'accueil {{ parent() }}{% endblock %}
 
 {% block body %}
+    <!-- Main jumbotron for a marketing message -->
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-7 col-sm-7 col-lg-4">
+                    <h1>Nouveau !</h1>
+                    <p>Commandez vos tickets en ligne désormais!</p>
+                    <p><a class="btn btn-primary btn-lg" href="{{ path('ml_ticketing_homepage') }}" role="button">&xoplus; En savoir plus &raquo;</a></p>
+                </div>
+                <div class="hidden-xs col-sm-5 col-lg-offset-2 col-lg-5">
+                    <img class="ticket" src="{{ asset('bundles/mlcore/img/h.ticket.png') }}" width="100%" alt="Billets">
+                </div>
+                <div class="visible-xs">
+                    <img class="ticket" src="{{ asset('bundles/mlcore/img/v.ticket.png') }}" height="210px" alt="Billets">
+                </div>
+            </div>
+        </div>
+    </div><!-- End jumbotron -->
 
-    <div class="row">
-        <div class="col-md-4 heading">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4 heading">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-        </div>
-        <div class="col-md-4 heading">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 heading">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-4 heading">
+                <h2>Heading</h2>
+                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
+            <div class="col-md-4 heading">
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit.</p>
+                <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            </div>
         </div>
     </div>
 

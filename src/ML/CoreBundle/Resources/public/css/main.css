@@ -17,7 +17,24 @@ body {
     color: #757575;
 }
 
+.container.header {
+    position: relative;
+}
+
+#paris {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    opacity: 0.8;
+}
+
 .signature {
     font-family: 'Fredericka the Great', cursive;
     float: right;
+}
+
+@media(max-width:767px){
+    #paris {
+        top: 5px;
+    }
 }

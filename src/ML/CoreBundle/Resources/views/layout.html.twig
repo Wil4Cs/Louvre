@@ -11,7 +11,7 @@
 
         {% block stylesheets %}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Dosis|Fredericka+the+Great" rel="stylesheet">
             <link rel="stylesheet" href="{{ asset('bundles/mlcore/css/main.css') }}" type="text/css" />
             <link rel="stylesheet" href="{{ asset('bundles/mlcore/css/index.css') }}" type="text/css" />
         {% endblock %}
@@ -52,33 +52,17 @@
             </div>
         </nav>
 
-        <!-- Main jumbotron for a marketing message -->
-        <div class="jumbotron">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-7 col-sm-7 col-lg-4">
-                        <h1>Nouveau !</h1>
-                        <p>Commandez vos tickets en ligne désormais!</p>
-                        <p><a class="btn btn-primary btn-lg" href="{{ path('ml_ticketing_homepage') }}" role="button">&xoplus; En savoir plus &raquo;</a></p>
-                    </div>
-                    <div class="hidden-xs col-sm-5 col-lg-offset-2 col-lg-5">
-                        <img class="ticket" src="{{ asset('bundles/mlcore/img/h.ticket.png') }}" width="100%" alt="Billets">
-                    </div>
-                    <div class="col-xs-offset-1 col-xs-2 visible-xs">
-                        <img class="ticket" src="{{ asset('bundles/mlcore/img/v.ticket.png') }}" height="210px" alt="Billets">
-                    </div>
-                </div>
-            </div>
-        </div><!-- End jumbotron -->
+        <div class="container header">
+            <img src="{{ asset('bundles/mlcore/img/man.jpg') }}" width="100%" alt="Momie">
+            <img id="paris" src="{{ asset('bundles/mlcore/img/paris.png') }}" width="100%" alt="Paris">
+        </div>
+
+        {% block body %}{% endblock %}
 
         <div class="container">
-
-            {% block body %}{% endblock %}
-
             <hr>
-
             <footer>
-                <p>&copy; Wil4Cs</p>
+                <p class="signature">&copy; Wil4Cs</p>
             </footer>
         </div> <!-- /container -->
 
