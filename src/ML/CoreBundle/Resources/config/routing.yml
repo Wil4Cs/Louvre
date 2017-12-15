@@ -1,0 +1,4 @@
+ml_core_homepage:
+    path:     /
+    defaults:
+        _controller: MLCoreBundle:Core:index

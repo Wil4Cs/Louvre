@@ -1,0 +1,45 @@
+body {
+    font-size: 18px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: 'Dosis', sans-serif;
+}
+
+.jumbotron {
+    background-color: #FAFAFA;
+    color: #000000;
+}
+
+.navbar {
+    background-color: #323232;
+}
+
+#navbar li a {
+    color: #FFFFFF;
+}
+
+#navbar li a:hover {
+    color: #757575;
+}
+
+.btn-primary {
+    border-radius: 30px;
+    border: solid black 1px;
+    background-color: white;
+    color: black;
+}
+
+.btn-primary:hover {
+    border: none;
+    background-color: black;
+    color: white;
+}
+
+@media(max-width:767px){}
+@media(min-width:768px){
+    .ticket {
+        margin-top: 20px;
+    }
+}
+@media(min-width:992px){}
+@media(min-width:1200px){}

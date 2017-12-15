@@ -1,0 +1,13 @@
+.heading {
+    background-color: #F9F0EB;
+    padding-bottom: 5px;
+}
+
+.btn-default {
+    border-radius: 20px;
+    border: solid black 1px;
+}
+
+.btn-default:hover {
+    border: solid white 1px;
+}

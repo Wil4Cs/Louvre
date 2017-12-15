@@ -1,0 +1,4 @@
+services:
+#    ml_core.example:
+#        class: ML\CoreBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

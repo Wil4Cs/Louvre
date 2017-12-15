@@ -1,0 +1,4 @@
+ml_core:
+    resource: "@MLCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
