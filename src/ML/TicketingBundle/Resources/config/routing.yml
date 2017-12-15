@@ -1,0 +1,6 @@
+# src/ML/TicketingBundle/Resources/config/routing.yml
+
+ml_ticketing_homepage:
+    path: /
+    defaults:
+        _controller: MLTicketingBundle:Booking:index

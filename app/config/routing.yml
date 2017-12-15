@@ -1,3 +1,9 @@
+# app/config/routing.yml
+
+ml_ticketing:
+    resource: "@MLTicketingBundle/Resources/config/routing.yml"
+    prefix:   /ticketing
+
 ml_core:
     resource: "@MLCoreBundle/Resources/config/routing.yml"
     prefix:   /

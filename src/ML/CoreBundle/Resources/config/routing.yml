@@ -1,3 +1,5 @@
+# src/ML/CoreBundle/Resources/config/routing.yml
+
 ml_core_homepage:
     path:     /
     defaults:
