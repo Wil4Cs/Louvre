@@ -4,3 +4,8 @@ ml_ticketing_homepage:
     path: /
     defaults:
         _controller: MLTicketingBundle:Booking:index
+
+ml_ticketing_schedule:
+    path: /schedule
+    defaults:
+        _controller: MLTicketingBundle:Booking:schedule

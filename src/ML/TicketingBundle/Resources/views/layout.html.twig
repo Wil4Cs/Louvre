@@ -1,0 +1,16 @@
+{% extends 'MLCoreBundle::layout.html.twig' %}
+
+{% block title %} Billetterie {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#">Infos pratiques</a></li>
+        <li role="presentation"><a href="#">Horaires</a></li>
+        <li role="presentation"><a href="#">Tarifs</a></li>
+        <li role="presentation"><a href="#">Commandez vos billets</a></li>
+    </ul>
+
+    {% block booking %}{% endblock %}
+
+{% endblock %}

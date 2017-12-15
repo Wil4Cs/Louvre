@@ -46,7 +46,6 @@
                         <li><a href="#">Infos pratiques</a></li>
                         <li><a href="#">Visites & activités</a></li>
                         <li><a href="{{ path('ml_ticketing_homepage') }}">Billetterie</a></li>
-                        <li></li>
                     </ul>
                 </div><!-- nav-collapse -->
             </div>
@@ -57,10 +56,13 @@
             <img id="paris" src="{{ asset('bundles/mlcore/img/paris.png') }}" width="100%" alt="Paris">
         </div>
 
-        {% block body %}{% endblock %}
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
 
         <div class="container">
             <hr>
+
             <footer>
                 <p class="signature">&copy; Wil4Cs</p>
             </footer>
