@@ -10,4 +10,5 @@ class CoreController extends Controller
     {
         return $this->render('MLCoreBundle:Core:index.html.twig');
     }
+
 }

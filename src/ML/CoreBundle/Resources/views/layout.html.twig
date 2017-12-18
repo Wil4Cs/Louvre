@@ -14,6 +14,8 @@
             <link href="https://fonts.googleapis.com/css?family=Dosis|Fredericka+the+Great" rel="stylesheet">
             <link rel="stylesheet" href="{{ asset('bundles/mlcore/css/main.css') }}" type="text/css" />
             <link rel="stylesheet" href="{{ asset('bundles/mlcore/css/index.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('bundles/mlticketing/css/layout.css') }}" type="text/css" />
+            <link rel="stylesheet" href="{{ asset('bundles/mlticketing/css/schedule.css') }}" type="text/css" />
         {% endblock %}
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -43,7 +45,7 @@
                 </div>
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="#">Infos pratiques</a></li>
+                        <li><a href="{{ path('ml_ticketing_homepage') }}">Infos pratiques</a></li>
                         <li><a href="#">Visites & activités</a></li>
                         <li><a href="{{ path('ml_ticketing_homepage') }}">Billetterie</a></li>
                     </ul>
@@ -56,7 +58,7 @@
             <img id="paris" src="{{ asset('bundles/mlcore/img/paris.png') }}" width="100%" alt="Paris">
         </div>
 
-        <div class="container">
+        <div class="container test">
             {% block body %}{% endblock %}
         </div>
 

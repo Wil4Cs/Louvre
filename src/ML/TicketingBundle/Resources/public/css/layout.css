@@ -1,0 +1,13 @@
+.nav-tabs {
+    background: linear-gradient( to right, #FFFFFF, #323232);
+    border-radius: 5px;
+}
+
+.nav-tabs li a {
+    color: black;
+}
+
+.nav-tabs li a:hover {
+    color: #FFFFFF;
+    background-color: #000000;
+}

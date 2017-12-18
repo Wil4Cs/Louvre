@@ -1,0 +1,37 @@
+{% extends 'MLTicketingBundle::layout.html.twig' %}
+
+{% block title %} Horaires {{ parent() }}{% endblock %}
+
+{% block booking %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1 >Horaires</h1>
+        </div>
+
+        <div class="col-xs-12 col-md-8 col-lg-6">
+            <div class="panel panel-warning">
+                <!-- Panel title -->
+                <div class="panel-heading"><h3>HORAIRES DU MUSÉE DU LOUVRE</h3></div>
+                <div class="panel-body">
+                    <p>L'évacuation des salles débute à 17 h 30 ou 21 h 30 les jours de nocturne.</p>
+                </div>
+
+                <!-- List group -->
+                <ul class="list-group">
+                    <li class="list-group-item">Lundi : 9 h - 18 h</li>
+                    <li class="list-group-item">Mardi : Fermé</li>
+                    <li class="list-group-item">Mercredi : 9 h - 21 h 45</li>
+                    <li class="list-group-item">Jeudi : 9 h - 18 h</li>
+                    <li class="list-group-item">Vendredi : 9 h - 21 h 45</li>
+                    <li class="list-group-item">Samedi : 9 h - 18 h</li>
+                    <li class="list-group-item">Dimanche : 9 h - 18 h</li>
+                </ul>
+
+                <!-- Panel footer -->
+                <div class="panel-footer">Les 24 et 31 décembre, le musée fermera exceptionnellement à 17 heures.</div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

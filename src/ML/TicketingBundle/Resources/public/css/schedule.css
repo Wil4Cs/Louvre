@@ -1,0 +1,17 @@
+.panel-body {
+    color: #8A6D44;
+    background-color: #FEFCF3;
+}
+
+.list-group-item:nth-child(even) {
+    background-color: #F0F0F0;
+}
+
+.list-group-item {
+    border-color: #EFE1C3;
+}
+
+.panel-footer {
+    color: #8A6D44;
+    background-color: #FCF8E3;
+}
