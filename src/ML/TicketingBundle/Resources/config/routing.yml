@@ -9,3 +9,8 @@ ml_ticketing_schedule:
     path: /schedule
     defaults:
         _controller: MLTicketingBundle:Ticketing:schedule
+
+ml_ticketing_rate:
+    path: /rate
+    defaults:
+        _controller: MLTicketingBundle:Ticketing:rate

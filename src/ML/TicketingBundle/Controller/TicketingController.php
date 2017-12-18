@@ -15,4 +15,9 @@ class TicketingController extends Controller
     {
         return $this->render('MLTicketingBundle:Ticketing:schedule.html.twig');
     }
+
+    public function rateAction()
+    {
+        return $this->render('MLTicketingBundle:Ticketing:rate.html.twig');
+    }
 }
