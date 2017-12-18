@@ -14,3 +14,8 @@ ml_ticketing_rate:
     path: /rate
     defaults:
         _controller: MLTicketingBundle:Ticketing:rate
+
+ml_ticketing_booking:
+    path: /booking
+    defaults:
+        _controller: MLTicketingBundle:Ticketing:booking

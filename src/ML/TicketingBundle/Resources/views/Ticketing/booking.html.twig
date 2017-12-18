@@ -1,0 +1,17 @@
+{% extends 'MLTicketingBundle::layout.html.twig' %}
+
+{% block title %} Réservation {{ parent() }}{% endblock %}
+
+{%  block booking %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Réservez vos billets !</h1>
+            <div class="jumbotron">
+                <h2>Informations complémentaires pour la réservation en ligne.</h2>
+                <p>Deux types de billets sont disponibles à la vente : le billet « Journée » et le billet « Demi-journée ». Ce dernier ne permet de rentrer qu’à partir de 14h00.</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
