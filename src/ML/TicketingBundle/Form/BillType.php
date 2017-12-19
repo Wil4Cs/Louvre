@@ -18,7 +18,6 @@ class BillType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('date')
             ->add('email', RepeatedType::class, array(
                 'type' => EmailType::class,
                 'invalid_message' => 'Les adresses mail doivent êtres identiques.',

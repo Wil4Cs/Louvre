@@ -40,7 +40,15 @@ class Bill
      *
      * @ORM\Column(name="ticket_number", type="smallint")
      */
-    private $ticket_number;
+    private $ticketNumber;
+
+    /**
+     * Bill constructor.
+     */
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Get id
@@ -109,7 +117,7 @@ class Bill
      */
     public function setTicketNumber($ticketNumber)
     {
-        $this->ticket_number = $ticketNumber;
+        $this->ticketNumber = $ticketNumber;
 
         return $this;
     }
@@ -121,6 +129,6 @@ class Bill
      */
     public function getTicketNumber()
     {
-        return $this->ticket_number;
+        return $this->ticketNumber;
     }
 }
