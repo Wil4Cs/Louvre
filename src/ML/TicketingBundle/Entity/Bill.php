@@ -2,6 +2,7 @@
 
 namespace ML\TicketingBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,11 +44,17 @@ class Bill
     private $ticketNumber;
 
     /**
+     * @ORM\OneToMany(targetEntity="ML\TicketingBundle\Entity\Ticket", cascade={"persist"}, mappedBy="bill")
+     */
+    private $tickets;
+
+    /**
      * Bill constructor.
      */
     public function __construct()
     {
         $this->date = new \DateTime();
+        $this->tickets = new ArrayCollection();
     }
 
     /**
@@ -130,5 +137,41 @@ class Bill
     public function getTicketNumber()
     {
         return $this->ticketNumber;
+    }
+
+    /**
+     * Add ticket
+     *
+     * @param \ML\TicketingBundle\Entity\Ticket $ticket
+     *
+     * @return Bill
+     */
+    public function addTicket(Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+
+        $ticket->setBill($this);
+        
+        return $this;
+    }
+
+    /**
+     * Remove ticket
+     *
+     * @param \ML\TicketingBundle\Entity\Ticket $ticket
+     */
+    public function removeTicket(Ticket $ticket)
+    {
+        $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get tickets
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
     }
 }

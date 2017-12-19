@@ -63,6 +63,12 @@ class Ticket
      */
     private $serialNumber;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="ML\TicketingBundle\Entity\Bill", inversedBy="tickets")
+     *
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $bill;
 
     /**
      * Get id
@@ -217,5 +223,28 @@ class Ticket
     {
         return $this->serialNumber;
     }
-}
 
+    /**
+     * Set bill
+     *
+     * @param \ML\TicketingBundle\Entity\Bill $bill
+     *
+     * @return Ticket
+     */
+    public function setBill(Bill $bill)
+    {
+        $this->bill = $bill;
+
+        return $this;
+    }
+
+    /**
+     * Get bill
+     *
+     * @return \ML\TicketingBundle\Entity\Bill
+     */
+    public function getBill()
+    {
+        return $this->bill;
+    }
+}
