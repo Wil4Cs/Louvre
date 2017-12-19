@@ -151,7 +151,7 @@ class Bill
         $this->tickets[] = $ticket;
 
         $ticket->setBill($this);
-        
+
         return $this;
     }
 

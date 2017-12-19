@@ -4,6 +4,7 @@ namespace ML\TicketingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,15 +20,15 @@ class BillType extends AbstractType
     {
         $builder
             ->add('email', RepeatedType::class, array(
-                'type' => EmailType::class,
-                'invalid_message' => 'Les adresses mail doivent êtres identiques.',
-                'required' => true,
-                'first_options'  => array('label' => 'Indiquez votre email'),
-                'second_options' => array('label' => 'Confirmez votre email'),
+                'type'              => EmailType::class,
+                'invalid_message'   => 'Les adresses mail doivent êtres identiques.',
+                'required'          => true,
+                'first_options'     => array('label' => 'Indiquez votre email'),
+                'second_options'    => array('label' => 'Confirmez votre email'),
             ))
             ->add('ticket_number',ChoiceType::class, array(
                 'placeholder' => 'Choisissez le nombre de tickets',
-                'choices' => array(
+                'choices'     => array(
                     '1' => 1,
                     '2' => 2,
                     '3' => 3,
@@ -39,6 +40,11 @@ class BillType extends AbstractType
                     '9' => 9,
                     '10'=> 10
                 ),
+            ))
+            ->add('tickets', CollectionType::class, array(
+                'entry_type'   => TicketType::class,
+                'allow_add'    => true,
+                'allow_delete' => true
             ))
         ;
     }
