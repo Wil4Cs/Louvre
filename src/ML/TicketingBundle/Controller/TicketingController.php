@@ -2,6 +2,8 @@
 
 namespace ML\TicketingBundle\Controller;
 
+use ML\TicketingBundle\Entity\Bill;
+use ML\TicketingBundle\Form\BillType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class TicketingController extends Controller
@@ -23,6 +25,11 @@ class TicketingController extends Controller
 
     public function bookingAction()
     {
-        return $this->render('MLTicketingBundle:Ticketing:booking.html.twig');
+        $bill = new Bill();
+        $form = $this->createForm(BillType::class, $bill);
+
+        return $this->render('MLTicketingBundle:Ticketing:booking.html.twig', array(
+            'form' => $form->createView()
+        ));
     }
 }
