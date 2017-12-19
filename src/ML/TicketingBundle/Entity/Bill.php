@@ -35,6 +35,12 @@ class Bill
      */
     private $email;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ticket_number", type="smallint")
+     */
+    private $ticket_number;
 
     /**
      * Get id
@@ -93,5 +99,28 @@ class Bill
     {
         return $this->email;
     }
-}
 
+    /**
+     * Set ticketNumber
+     *
+     * @param integer $ticketNumber
+     *
+     * @return Bill
+     */
+    public function setTicketNumber($ticketNumber)
+    {
+        $this->ticket_number = $ticketNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get ticketNumber
+     *
+     * @return integer
+     */
+    public function getTicketNumber()
+    {
+        return $this->ticket_number;
+    }
+}
