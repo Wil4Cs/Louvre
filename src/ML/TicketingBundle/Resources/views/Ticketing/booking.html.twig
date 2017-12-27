@@ -4,6 +4,7 @@
 
 {% block stylesheets %}
 {{ parent() }}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="{{ asset('bundles/mlticketing/css/booking.css') }}" type="text/css" />
 {% endblock %}
 
@@ -50,5 +51,7 @@
 {% endblock %}
 
 {% block javascript %}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/booking.js') }}"></script>
+<script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/datepicker.js') }}"></script>
 {% endblock %}
