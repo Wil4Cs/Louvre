@@ -9,7 +9,7 @@ $(function() {
     $.ajax({
         'async': false,
         'dataType': 'json',
-        'url': "../../data/datePickerParameters.json",
+        'url': "../../data/datepicker_parameters.json",
         'success': function (data) {
             pickerParameters = data; },
         error: function() {
