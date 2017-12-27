@@ -14,15 +14,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Bill
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
@@ -39,6 +30,15 @@ class Bill
     /**
      * @var int
      *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="ticket_number", type="smallint")
      */
     private $ticketNumber;
@@ -49,22 +49,19 @@ class Bill
     private $tickets;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="visit_day", type="datetime")
+     */
+    private $visitDay;
+
+    /**
      * Bill constructor.
      */
     public function __construct()
     {
         $this->date = new \DateTime();
         $this->tickets = new ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
     }
 
     /**
@@ -113,6 +110,16 @@ class Bill
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -173,5 +180,29 @@ class Bill
     public function getTickets()
     {
         return $this->tickets;
+    }
+
+    /**
+     * Set visitDay
+     *
+     * @param \DateTime $visitDay
+     *
+     * @return Ticket
+     */
+    public function setVisitDay($visitDay)
+    {
+        $this->visitDay = $visitDay;
+
+        return $this;
+    }
+
+    /**
+     * Get visitDay
+     *
+     * @return \DateTime
+     */
+    public function getVisitDay()
+    {
+        return $this->visitDay;
     }
 }

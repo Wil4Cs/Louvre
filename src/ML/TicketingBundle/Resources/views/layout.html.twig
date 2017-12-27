@@ -1,14 +1,16 @@
 {% extends 'MLCoreBundle::layout.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('bundles/mlticketing/css/layout.css') }}" type="text/css" />
+{% endblock %}
+
 {% block body %}
-
-        <ul class="nav nav-tabs">
-            <li role="presentation"><a href="{{ path('ml_ticketing_homepage') }}">Infos pratiques</a></li>
-            <li role="presentation"><a href="{{ path('ml_ticketing_schedule') }}">Horaires</a></li>
-            <li role="presentation"><a href="{{ path('ml_ticketing_rate') }}">Tarifs</a></li>
-            <li role="presentation"><a href="{{ path('ml_ticketing_booking') }}">Commandez vos billets</a></li>
-        </ul>
-
-    {% block booking %}{% endblock %}
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="{{ path('ml_ticketing_homepage') }}">Infos pratiques</a></li>
+        <li role="presentation"><a href="{{ path('ml_ticketing_schedule') }}">Horaires</a></li>
+        <li role="presentation"><a href="{{ path('ml_ticketing_rate') }}">Tarifs</a></li>
+        <li role="presentation"><a href="{{ path('ml_ticketing_booking') }}">Commandez vos billets</a></li>
+    </ul>
+{% block booking %}{% endblock %}
 
 {% endblock %}

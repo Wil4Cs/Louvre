@@ -43,13 +43,6 @@ class Ticket
     private $birthday;
 
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="visit_day", type="datetime")
-     */
-    private $visitDay;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
@@ -150,30 +143,6 @@ class Ticket
     public function getBirthday()
     {
         return $this->birthday;
-    }
-
-    /**
-     * Set visitDay
-     *
-     * @param \DateTime $visitDay
-     *
-     * @return Ticket
-     */
-    public function setVisitDay($visitDay)
-    {
-        $this->visitDay = $visitDay;
-
-        return $this;
-    }
-
-    /**
-     * Get visitDay
-     *
-     * @return \DateTime
-     */
-    public function getVisitDay()
-    {
-        return $this->visitDay;
     }
 
     /**

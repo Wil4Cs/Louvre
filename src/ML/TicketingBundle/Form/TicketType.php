@@ -21,7 +21,6 @@ class TicketType extends AbstractType
             ->add('firstName', TextType::class)
             ->add('lastName', TextType::class)
             ->add('birthday', BirthdayType::class)
-            ->add('visitDay', DateTimeType::class)
             ->add('country', CountryType::class)
         ;
     }

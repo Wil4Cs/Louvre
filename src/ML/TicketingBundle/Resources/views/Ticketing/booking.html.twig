@@ -2,8 +2,12 @@
 
 {% block title %} Réservation {{ parent() }}{% endblock %}
 
-{%  block booking %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('bundles/mlticketing/css/booking.css') }}" type="text/css" />
+{% endblock %}
 
+{%  block booking %}
     <div class="row">
         <div class="col-xs-12">
             <h1>Réservez vos billets !</h1>
@@ -13,26 +17,30 @@
             </div>
         </div>
     </div>
-    <div class="col-md-offset-3 col-md-6 well">
-        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    <div class="row">
+        <div class="col-md-offset-3 col-md-6 well">
 
-        {{ form_errors(form) }}
+            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
 
-        {{ form_row(form.email) }}
+            {{ form_errors(form) }}
 
-        <div class="form-group">
+            {{ form_row(form.visitDay) }}
 
-            {{ form_label(form.ticket_number, "Tickets") }}
+            {{ form_row(form.email) }}
 
-            {{ form_errors(form.ticket_number) }}
-
-            {{ form_widget(form.ticket_number) }}
+            {{ form_row(form.ticket_number, { 'label': 'Tickets' }) }}
 
         </div>
+
+        {{ form_row(form.tickets, { 'label': ' ' }) }}
 
         {{ form_rest(form) }}
 
         {{ form_end(form) }}
     </div>
 
+{% endblock %}
+
+{% block javascript %}
+<script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/booking.js') }}"></script>
 {% endblock %}

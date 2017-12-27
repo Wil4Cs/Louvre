@@ -5,6 +5,7 @@ namespace ML\TicketingBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,12 +20,13 @@ class BillType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('visitDay', DateTimeType::class, ['label'=>'Sélectionnez le jour de visite'])
             ->add('email', RepeatedType::class, array(
                 'type'              => EmailType::class,
                 'invalid_message'   => 'Les adresses mail doivent êtres identiques.',
                 'required'          => true,
-                'first_options'     => array('label' => 'Indiquez votre email'),
-                'second_options'    => array('label' => 'Confirmez votre email'),
+                'first_options'     => array('label' => 'Indiquez votre Email'),
+                'second_options'    => array('label' => 'Confirmez votre Email'),
             ))
             ->add('ticket_number',ChoiceType::class, array(
                 'placeholder' => 'Choisissez le nombre de tickets',

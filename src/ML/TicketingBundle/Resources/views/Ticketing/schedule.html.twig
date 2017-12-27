@@ -2,8 +2,12 @@
 
 {% block title %} Horaires {{ parent() }}{% endblock %}
 
-{% block booking %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('bundles/mlticketing/css/schedule.css') }}" type="text/css" />
+{% endblock %}
 
+{% block booking %}
     <div class="row">
         <div class="col-xs-12">
             <h1 >Horaires</h1>
@@ -36,5 +40,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

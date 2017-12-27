@@ -2,8 +2,12 @@
 
 {% block title %} Tarifs {{ parent() }}{% endblock %}
 
-{% block booking %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="{{ asset('bundles/mlticketing/css/rate.css') }}" type="text/css" />
+{% endblock %}
 
+{% block booking %}
     <div class="row">
         <div class="col-xs-12">
             <h1 >Tarifs</h1>
@@ -40,5 +44,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
