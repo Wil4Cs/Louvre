@@ -19,6 +19,7 @@
                     <li>Bien évidemment, il n’est pas possible de réserver pour les jours passés.</li>
                     <li>La vente de tickets en ligne pour les dimanches n'est pas encore disponible ainsi que pour les jours fériés.</li>
                     <li>Nous sommes également dans l'incapacité de vendre des billets les jours où plus de 1000 billets ont été vendus afin de ne pas dépasser la capacité du musée.</li>
+                    <li>Vous ne pouvez pas commander plus de 10 billets à la fois. Pour toute commande supérieure, renseignez-vous auprès de l'accueil pour obtenir le tarif groupe.</li>
                 </ul>
                 <p>Nous vous remercions pour votre compréhension.</p>
             </div>
@@ -31,7 +32,7 @@
 
             {{ form_errors(form) }}
 
-            {{ form_row(form.visitDay) }}
+            {{ form_row(form.visitDay, {'label': 'Sélectionnez le jour de visite' }) }}
 
             {{ form_row(form.email) }}
 
@@ -52,6 +53,7 @@
 
 {% block javascript %}
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/booking.js') }}"></script>
 <script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/datepicker.js') }}"></script>
+<script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/daily.js') }}"></script>
+<script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/booking.js') }}"></script>
 {% endblock %}

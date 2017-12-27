@@ -1,0 +1,5 @@
+{
+  "datesOff": ["01-01", "01-11", "25-12"],
+  "daysOff": ["mardi", "dimanche"],
+  "closingTime": "14:00:00"
+}

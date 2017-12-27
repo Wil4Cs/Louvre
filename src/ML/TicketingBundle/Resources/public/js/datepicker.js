@@ -5,11 +5,11 @@ $(function() {
 
     var pickerParameters = null;
 
-    // Ask  parameters for the date picker and store it in pickerParameters
+    // Ask  parameters.json for the date picker and store it in pickerParameters
     $.ajax({
         'async': false,
         'dataType': 'json',
-        'url': "../../data/datepicker_parameters.json",
+        'url': "../../data/parameters.json",
         'success': function (data) {
             pickerParameters = data; },
         error: function() {
@@ -17,34 +17,22 @@ $(function() {
         }
     });
 
-    // Check the hour and return a value for the minDate date picker option
-    // If the today's time is > than the time we choose, it disables the today's date
-    function getHour() {
-        var today = new Date();
-        var todayTime = today.toLocaleTimeString();
-        if (todayTime > pickerParameters.closingTime) {
-            return "1"; // Add +1 day to minDate option
-        } else {
-            return "0";
-        }
-    }
-
     // Configure the datepicker
     $('.datepicker').datepicker({
-        duration: pickerParameters.duration,
-        dateFormat: pickerParameters.dateFormat,
+        duration: "fast",
+        dateFormat: "dd/mm/yy",
         firstDay: 1,
-        monthNames: pickerParameters.monthNames,
-        dayNamesMin: pickerParameters.dayNamesMin,
-        prevText: pickerParameters.prevText,
-        nextText: pickerParameters.nextText,
-        numberOfMonths: pickerParameters.numberOfMonths,
-        minDate: getHour(),
-        maxDate: pickerParameters.maxDate,
-        showAnim: pickerParameters.showAnim,
-        stepMonths: pickerParameters.stepMonths,
-        currentText: pickerParameters.currentText,
-        closeText: pickerParameters.closeText,
+        monthNames: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+        dayNamesMin: [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ],
+        prevText: "Précédent",
+        nextText: "Suivant",
+        numberOfMonths: [1, 2],
+        minDate: 0,
+        maxDate: "+1y +1m",
+        showAnim: "clip",
+        stepMonths: 2,
+        currentText: "Aujourd'hui",
+        closeText: "Fermé",
         beforeShowDay: function(date) {
             // Return the name of the weekday (not just a number):
             var weekDay = new Array(7);
