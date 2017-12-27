@@ -44,6 +44,13 @@ class Bill
     private $ticketNumber;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="ticket_type", type="boolean")
+     */
+    private $daily;
+
+    /**
      * @ORM\OneToMany(targetEntity="ML\TicketingBundle\Entity\Ticket", cascade={"persist"}, mappedBy="bill")
      */
     private $tickets;
@@ -86,6 +93,22 @@ class Bill
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDaily()
+    {
+        return $this->daily;
+    }
+
+    /**
+     * @param mixed $daily
+     */
+    public function setDaily($daily)
+    {
+        $this->daily = $daily;
     }
 
     /**

@@ -28,6 +28,14 @@ class BillType extends AbstractType
                 'first_options'     => array('label' => 'Indiquez votre Email'),
                 'second_options'    => array('label' => 'Confirmez votre Email'),
             ))
+            ->add('daily', ChoiceType::class, array(
+                'choices' => array(
+                    'Journée' => true,
+                    'Demi-journée' => false
+                ),
+                'expanded'=> true,
+                'multiple'=> false
+            ))
             ->add('ticket_number',ChoiceType::class, array(
                 'placeholder' => 'Choisissez le nombre de tickets',
                 'choices'     => array(
