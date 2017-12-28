@@ -5,14 +5,39 @@
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 10px;
+    box-shadow: grey 2px 2px 6px;
 }
 
 .ticket-pair {
     margin-left: 5px;
 }
 
+.sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+    background-color: #CCCCCC;
+    border-radius: 3px;
+    height: 40px;
+    z-index: 255;
+    margin-bottom: 10px;
+    padding-top: 8px;
+    box-shadow: black 2px 2px 6px;
+}
+
+.row h1 + .jumbotron {
+     margin-bottom: 10px;
+}
+
+.form-1 {
+    box-shadow: grey 2px 2px 6px;
+}
+
 @media(max-width:767px){
     .ticket-pair, .ticket-impair{
         margin: 15px 15px 0 15px;
+    }
+    .sticky {
+        text-align: center;
     }
 }
