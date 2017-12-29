@@ -26,7 +26,8 @@
         </div>
     </div>
 
-    <div class="sticky col-sm-2 col-sm-offset-10"><i class="fa fa-shopping-basket" aria-hidden="true"></i>&nbsp; Panier:</div>
+    <div class="sticky col-sm-2 col-sm-offset-10"><i class="fa fa-shopping-basket" aria-hidden="true"></i>&nbsp;Panier : <span id="basket"></span>€</div>
+    <div class="test"></div>
 
     <div class="col-md-offset-3 col-md-6 well form-1">
 
@@ -40,7 +41,9 @@
 
         {{ form_row(form.daily, { 'label': 'Type de billet(s)' }) }}
 
-        {{ form_row(form.ticket_number, { 'label': 'Tickets' }) }}
+        {{ form_row(form.ticket_number, { 'label': 'Nombre de billet(s)' }) }}
+
+        <h5 class="temporary text-center">Sélectionnez un jour de visite pour commencer!</h5>
 
     </div>
 
