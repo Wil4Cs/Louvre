@@ -41,7 +41,8 @@ class BillType extends AbstractType
                 'multiple'=> false
             ))
             ->add('ticket_number',ChoiceType::class, array(
-                'placeholder' => 'Choisissez le nombre de tickets',
+                'disabled' => true,
+                'placeholder' => 'Choisissez le nombre de billets',
                 'choices'     => array(
                     '1' => 1,
                     '2' => 2,

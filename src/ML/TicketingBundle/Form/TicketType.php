@@ -25,6 +25,9 @@ class TicketType extends AbstractType
                 'label' => 'Nom'
             ))
             ->add('birthday', BirthdayType::class, array(
+                'widget' => 'single_text',
+                'html5' => false,
+                'attr' => ['class' => 'birthDatePicker'],
                 'label' => 'Date de Naissance'
             ))
             ->add('country', CountryType::class, array(
