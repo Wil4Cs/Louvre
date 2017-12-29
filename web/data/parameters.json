@@ -1,5 +1,13 @@
 {
-  "datesOff": ["01-01", "01-11", "25-12"],
+  "datesOff": ["01/01", "01/11", "25/12"],
   "daysOff": ["mardi", "dimanche"],
-  "closingTime": "14:00:00"
+  "closingTime": "14:00:00",
+  "normal": "16",
+  "child": "8",
+  "baby": "0",
+  "senior": "12",
+  "reduced": "10",
+  "price":[
+    {"age": ["0", "4"], "baby": "0"  }
+  ]
 }

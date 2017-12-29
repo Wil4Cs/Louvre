@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
 
     // Add an readonly attribute on date field to disable input by keyboard
     $('#ml_ticketingbundle_bill_visitDay').attr('readonly', 'readonly');
@@ -11,19 +11,20 @@ $(function() {
         'dataType': 'json',
         'url': "../../data/parameters.json",
         'success': function (data) {
-            pickerParameters = data; },
-        error: function() {
+            pickerParameters = data;
+        },
+        error: function () {
             alert('La requête n\'a pas abouti');
         }
     });
 
-    // Configure the datepicker
+    // Configure the date picker
     $('.datepicker').datepicker({
         duration: "fast",
         dateFormat: "dd/mm/yy",
         firstDay: 1,
         monthNames: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
-        dayNamesMin: [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ],
+        dayNamesMin: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"],
         prevText: "Précédent",
         nextText: "Suivant",
         numberOfMonths: [1, 2],
@@ -33,10 +34,10 @@ $(function() {
         stepMonths: 2,
         currentText: "Aujourd'hui",
         closeText: "Fermé",
-        beforeShowDay: function(date) {
+        beforeShowDay: function (date) {
             // Return the name of the weekday (not just a number):
             var weekDay = new Array(7);
-            weekDay[0] =  "dimanche";
+            weekDay[0] = "dimanche";
             weekDay[1] = "lundi";
             weekDay[2] = "mardi";
             weekDay[3] = "mercredi";
@@ -45,14 +46,14 @@ $(function() {
             weekDay[6] = "samedi";
             var currentWeekDay = weekDay[date.getDay()];
 
-            // Return the date in 2 digit format dd-mm. E.g. 01-01 for the 1st january instead of 1-1
-            var dayMonth = ('0' + date.getDate()).slice(-2) + '-' + ('0' + (date.getMonth()+1)).slice(-2);
+            // Return the date in 2 digit format dd-mm. E.g. 01/01 for the 1st january instead of 1/1
+            var dayMonth = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2);
 
             // Check if date(s) && week day(s) exist to disable it in the date picker
             if ($.inArray(dayMonth, pickerParameters.datesOff) < 0 && $.inArray(currentWeekDay, pickerParameters.daysOff) < 0) {
-                return [true,"","Réserver!"];
+                return [true, "", "Réserver!"];
             } else {
-                return [false,"",""];
+                return [false, "", ""];
             }
         }
     });

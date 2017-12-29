@@ -5,14 +5,15 @@ $(function () {
     var selectedDate = $('#ml_ticketingbundle_bill_visitDay');
     var timeParameter = null;
 
-    // Ask  parameters.json to know closing time and store it in parameters
+    // Ask  parameters.json to know closing time and store it in timeParameter
     $.ajax({
         'async': false,
         'dataType': 'json',
         'url': "../../data/parameters.json",
         'success': function (data) {
-            timeParameter = data; },
-        error: function() {
+            timeParameter = data;
+        },
+        error: function () {
             alert('La requête n\'a pas abouti');
         }
     });
@@ -28,3 +29,4 @@ $(function () {
         }
     });
 });
+
