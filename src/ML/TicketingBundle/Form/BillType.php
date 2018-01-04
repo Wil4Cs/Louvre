@@ -23,12 +23,11 @@ class BillType extends AbstractType
             ->add('visitDay', DateType::class, array(
                 'widget' => 'single_text',
                 'html5' => false,
-                'attr' => ['class' => 'datepicker']
+                'attr' => ['class' => 'datepicker'],
             ))
             ->add('email', RepeatedType::class, array(
                 'type'              => EmailType::class,
                 'invalid_message'   => 'Les adresses mail doivent êtres identiques.',
-                'required'          => true,
                 'first_options'     => array('label' => 'Indiquez votre Email'),
                 'second_options'    => array('label' => 'Confirmez votre Email'),
             ))
@@ -57,6 +56,7 @@ class BillType extends AbstractType
                 ),
             ))
             ->add('tickets', CollectionType::class, array(
+                'label'        => false,
                 'entry_type'   => TicketType::class,
                 'allow_add'    => true,
                 'allow_delete' => true

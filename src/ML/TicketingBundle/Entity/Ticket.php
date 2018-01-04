@@ -50,6 +50,11 @@ class Ticket
     private $country;
 
     /**
+     * @ORM\Column(name="reduction", type="boolean")
+     */
+    private $reduction;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="serial_number", type="smallint", unique=true)
@@ -167,6 +172,22 @@ class Ticket
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReduction()
+    {
+        return $this->reduction;
+    }
+
+    /**
+     * @param mixed $reduction
+     */
+    public function setReduction($reduction)
+    {
+        $this->reduction = $reduction;
     }
 
     /**

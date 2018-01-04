@@ -4,8 +4,8 @@ namespace ML\TicketingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CountryType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,11 +26,23 @@ class TicketType extends AbstractType
             ))
             ->add('birthday', BirthdayType::class, array(
                 'widget' => 'single_text',
-                'html5' => false,
-                'attr' => ['class' => 'birthDatePicker'],
-                'label' => 'Date de Naissance'
+                'html5'  => false,
+                'attr'   => ['class' => 'birthDatePicker'],
+                'label'  => 'Date de Naissance'
+            ))
+            ->add('reduction', ChoiceType::class, array(
+                'label'    => 'Réduction',
+                'choices'  => array(
+                    'Oui'  => true,
+                    'Non'  => false
+                ),
+                'disabled'     => true,
+                'data'     => 0,
+                'multiple' => false,
+                'expanded' => true
             ))
             ->add('country', CountryType::class, array(
+                'data' => 'FR',
                 'label' => 'Pays'
             ))
         ;
