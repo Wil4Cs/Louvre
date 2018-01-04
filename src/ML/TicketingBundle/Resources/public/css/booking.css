@@ -15,7 +15,7 @@
 .sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 50px;
+    top: 5px;
     background-color: #CCCCCC;
     border-radius: 3px;
     height: 40px;
