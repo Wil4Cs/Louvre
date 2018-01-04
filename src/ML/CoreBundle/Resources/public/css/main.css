@@ -7,6 +7,7 @@ body {
 
 .navbar {
     background-color: #323232;
+    z-index: 254;
 }
 
 #navbar li a {
