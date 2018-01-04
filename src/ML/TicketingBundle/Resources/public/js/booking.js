@@ -36,8 +36,10 @@ $(function () {
             }
         }
 
-        // The birthday date selector for each ticket. Add a readonly attribute on each
-        var birthdaySelector = $('[id$="birthday"]').attr('readonly', 'readonly');
+        // The birthday date selector for each ticket.
+        var birthdaySelector = $('[id$="birthday"]');
+        //Add a readonly attribute on each
+        birthdaySelector.attr('readonly', 'readonly');
 
         // Configuration of the date picker
         $('.birthDatePicker').datepicker({
@@ -57,13 +59,19 @@ $(function () {
             nextText: "Suivant"
         });
 
-        // Count the basket's price when a date is selected
+        // Count the basket's price when a birth date is selected on a ticket
         $(birthdaySelector).change(function () {
-            totalPrice = countPrice();
+            totalPrice = countTotalPrice();
             $('#basket').text(totalPrice);
         });
 
-        totalPrice = countPrice();
+        // Count the basket's price depending the value of reduction's radio buttons
+        $('[id$="reduction"]').change(function () {
+            totalPrice = countTotalPrice();
+            $('#basket').text(totalPrice);
+        });
+
+        totalPrice = countTotalPrice();
 
         $('#basket').text(totalPrice);
     });
@@ -98,22 +106,14 @@ $(function () {
         displayedTicket--;
     }
 
-    function countPrice() {
+    function countTotalPrice() {
         var basketPrice = 0;
         var visitDate = visitDaySelector.val();
         for (var i = 0; i < displayedTicket; i++) {
             var birthDate = $('#ml_ticketingbundle_bill_tickets_' + i + '_birthday').val();
             var age = countAge(visitDate,birthDate);
-            if (age === -1) {
-
-            } else if (age < 4 || birthDate === "") {
-                basketPrice += 0;
-            } else if (age < 12) {
-                basketPrice += 8;
-            } else if (age < 62) {
-                basketPrice += 16;
-            } else {
-                basketPrice += 12;
+            if (birthDate !== "") {
+                basketPrice += selectTicketPrice(i,age);
             }
         }
         return basketPrice;
@@ -138,5 +138,54 @@ $(function () {
             'year'  : date.slice(6, 10)
         };
         return arrayDate;
+    }
+
+    function selectTicketPrice(index,age) {
+        // Some selectors
+        var radioSelectors = $('[id^="ml_ticketingbundle_bill_tickets_'+ index +'_reduction_"]'),
+            reduction = $('#ml_ticketingbundle_bill_tickets_'+ index +'_reduction_0'),
+            noReduction = $('#ml_ticketingbundle_bill_tickets_'+ index +'_reduction_1');
+
+        var json = ajaxCall();
+        // Find the price depending the age && disabled or enabled the reduced radio buttons
+        if (age < json.ticket.normal.age) {
+            if (radioSelectors.is(':enabled')) {
+                radioSelectors.prop('disabled', true);
+                noReduction.prop('checked', true);
+            }
+            if (age < json.ticket.teenager.age) {
+                return json.ticket.baby.price;
+            } else {
+                return json.ticket.teenager.price;
+            }
+        } else {
+            if (radioSelectors.is(':disabled')) {
+                radioSelectors.prop('disabled', false);
+            }
+            if (reduction.is(':checked') === true) {
+                return json.ticket.reduced.price;
+            } else if (age < json.ticket.senior.age) {
+                return json.ticket.normal.price;
+            } else {
+                return json.ticket.senior.price;
+            }
+        }
+    }
+
+    function ajaxCall() {
+        var dataObject = null;
+        // Ask  parameters.json for the date picker and store it in dataObject
+        $.ajax({
+            'async': false,
+            'dataType': 'json',
+            'url': "../../data/parameters.json",
+            'success': function (data) {
+                dataObject = data;
+            },
+            error: function () {
+                alert('La requête n\'a pas abouti');
+            }
+        });
+        return dataObject;
     }
 });
