@@ -1,11 +1,15 @@
 .ticket-pair, .ticket-impair {
     border: solid #CCCCCC 1px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 20px;
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 10px;
     box-shadow: grey 2px 2px 6px;
+}
+
+.ticket-pair > label , .ticket-impair > label{
+    display: flex;
+    justify-content: center;
 }
 
 .ticket-pair {
@@ -26,10 +30,10 @@
 }
 
 .row h1 + .jumbotron {
-     margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
-.form-1 {
+.form-shadow {
     box-shadow: grey 2px 2px 6px;
 }
 

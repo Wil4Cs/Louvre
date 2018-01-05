@@ -28,29 +28,37 @@
 
     <div class="sticky col-xs-offset-3 col-xs-6 col-sm-offset-9 col-sm-3 col-md-offset-10 col-md-2"><i class="fa fa-shopping-basket" aria-hidden="true"></i>&nbsp;Panier : <span id="basket"></span>€</div>
 
-    <div class="col-md-offset-3 col-md-6 well form-1">
+    <div class="row">
 
-        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_start(form, {'attr': {'id' : 'bookingForm', 'class': 'form-horizontal'}}) }}
 
         {{ form_errors(form) }}
 
-        {{ form_row(form.visitDay, {'label': 'Sélectionnez le jour de visite' }) }}
+        <div class="col-md-offset-3 col-md-6 well form-shadow">
+            {{ form_row(form.visitDay, {'label': 'Sélectionnez le jour de visite' }) }}
 
-        {{ form_row(form.email) }}
+            {{ form_row(form.email) }}
 
-        {{ form_row(form.daily, { 'label': 'Type de billet(s)' }) }}
+            {{ form_row(form.daily, { 'label': 'Type de billet(s)' }) }}
 
-        {{ form_row(form.ticket_number, { 'label': 'Nombre de billet(s)' }) }}
+            {{ form_row(form.ticket_number, { 'label': 'Nombre de billet(s)' }) }}
 
-        <p class="temporary text-center">Sélectionnez un jour de visite pour commencer!</p>
+            <p class="temporary text-center">Sélectionnez un jour de visite pour commencer!</p>
+        </div>
+
+        <div>
+            {{ form_row(form.tickets) }}
+        </div>
+
+        <div class="col-xs-12">
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-info center-block'}, 'label': 'Envoyer'}) }}
+        </div>
+
+        {{ form_rest(form) }}
+
+        {{ form_end(form) }}
 
     </div>
-
-    {{ form_row(form.tickets) }}
-
-    {{ form_rest(form) }}
-
-    {{ form_end(form) }}
 
 {% endblock %}
 
