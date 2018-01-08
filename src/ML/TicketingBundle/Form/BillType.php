@@ -3,6 +3,7 @@
 namespace ML\TicketingBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -30,7 +31,10 @@ class BillType extends AbstractType
                 'type'              => EmailType::class,
                 'invalid_message'   => 'Les adresses mail doivent êtres identiques.',
                 'first_options'     => array('label' => 'Indiquez votre Email'),
-                'second_options'    => array('label' => 'Confirmez votre Email'),
+                'second_options'    => array(
+                    'label' => 'Confirmez votre Email',
+                    // Those attributes are required for the JQuery Form Validator only
+                    'attr' => array('data-validation' => 'confirmation', 'data-validation-confirm' => 'ml_ticketingbundle_bill[email][first]')),
             ))
             ->add('daily', ChoiceType::class, array(
                 'choices' => array(

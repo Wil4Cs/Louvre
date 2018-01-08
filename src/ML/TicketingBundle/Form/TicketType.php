@@ -19,16 +19,31 @@ class TicketType extends AbstractType
     {
         $builder
             ->add('firstName', TextType::class, array(
-                'label' => 'Prénom'
+                'label' => 'Prénom',
+                // Those attributes are required for the JQuery Form Validator only
+                'attr'  => array(
+                    'data-validation'        => 'length',
+                    'data-validation-length' => '3-30'
+                )
             ))
             ->add('lastName', TextType::class, array(
-                'label' => 'Nom'
+                'label' => 'Nom',
+                // Those attributes are required for the JQuery Form Validator only
+                'attr'  => array(
+                    'data-validation'        => 'length',
+                    'data-validation-length' => '3-30'
+                )
             ))
             ->add('birthday', BirthdayType::class, array(
                 'widget' => 'single_text',
                 'html5'  => false,
-                'attr'   => ['class' => 'birthDatePicker'],
-                'label'  => 'Date de Naissance'
+                'attr'   => array(
+                    'class'                  => 'birthDatePicker',
+                    // Those attributes are required for the JQuery Form Validator only
+                    'data-validation'        => 'birthdate',
+                    'data-validation-format' => 'dd/mm/yyyy'),
+                'label'  => 'Date de Naissance',
+
             ))
             ->add('reduction', ChoiceType::class, array(
                 'label'    => 'Réduction',
@@ -42,7 +57,7 @@ class TicketType extends AbstractType
                 'expanded' => true
             ))
             ->add('country', CountryType::class, array(
-                'data' => 'FR',
+                'data'  => 'FR',
                 'label' => 'Pays'
             ))
         ;
