@@ -51,7 +51,7 @@
         </div>
 
         <div class="col-xs-12">
-            {{ form_widget(form.save, {'attr': {'class': 'btn btn-info center-block'}, 'label': 'Envoyer'}) }}
+            {{ form_widget(form.save, {'attr': {'class': 'btn btn-info center-block'}, 'label': 'Valider'}) }}
         </div>
 
         {{ form_rest(form) }}
@@ -63,8 +63,11 @@
 {% endblock %}
 
 {% block javascript %}
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/datepicker.js') }}"></script>
-<script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/daily.js') }}"></script>
-<script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/booking.js') }}"></script>
+    <script  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script  src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+    <script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/validator-form.js') }}"></script>
+    <script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/datepicker.js') }}"></script>
+    <script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/daily.js') }}"></script>
+    <script  type="text/javascript" src="{{ asset('bundles/mlticketing/js/booking.js') }}"></script>
+
 {% endblock %}

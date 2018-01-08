@@ -21,11 +21,11 @@ $(function () {
     // Check the today date & time and disable or not the daily ticket
     $(selectedDate).change(function () {
         if (selectedDate.val() === todayDate && todayTime >= timeParameter.closingTime) {
-            $('#ml_ticketingbundle_bill_daily_1').prop('checked', true);
             $('#ml_ticketingbundle_bill_daily_0').prop('disabled', true);
+            $('#ml_ticketingbundle_bill_daily_1').prop('checked', true);
         } else {
-            $('#ml_ticketingbundle_bill_daily_1').prop('checked', false);
             $('#ml_ticketingbundle_bill_daily_0').prop('disabled', false);
+            $('#ml_ticketingbundle_bill_daily_1').prop('checked', false);
         }
     });
 });
