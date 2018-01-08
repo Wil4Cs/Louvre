@@ -37,6 +37,10 @@
     box-shadow: grey 2px 2px 6px;
 }
 
+#ml_ticketingbundle_bill_save {
+    width: 51%;
+}
+
 @media(max-width:767px){
     .ticket-pair, .ticket-impair{
         margin: 15px 15px 0 15px;
