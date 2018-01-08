@@ -15,6 +15,11 @@ $(function () {
         $('.temporary').remove();
     });
 
+    // Launch Jquery Validator Form
+    $(tickets).click(function () {
+        $.validate();
+    });
+
     // Add or delete ticket(s) depending the select value and adjust the basket's price
     $(tickets).change(function () {
 
