@@ -3,12 +3,18 @@
 namespace ML\TicketingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Ticket
  *
  * @ORM\Table(name="ml_ticket")
  * @ORM\Entity(repositoryClass="ML\TicketingBundle\Repository\TicketRepository")
+ * @UniqueEntity(
+ *     fields = {"serialNumber"},
+ *     message = "Ce numéro de série est déjà utilisé"
+ * )
  */
 class Ticket
 {
@@ -25,6 +31,12 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
+     * @Assert\Length(
+     *     min = 3,
+     *     max = 255,
+     *     minMessage = "Votre prénom doit comporter au moins {{limit}} caractères",
+     *     maxMessage = "Votre prénom ne doit pas comporter plus de {{limit}} caractères"
+     * )
      */
     private $firstName;
 
@@ -32,6 +44,12 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
+     * * @Assert\Length(
+     *     min = 3,
+     *     max = 255,
+     *     minMessage = "Votre nom doit comporter au moins {{limit}} caractères",
+     *     maxMessage = "Votre nom ne doit pas comporter plus de {{limit}} caractères"
+     * )
      */
     private $lastName;
 
@@ -39,6 +57,7 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="birthday", type="date")
+     * @Assert\Date(message = "Cette valeur n'est pas une date valide")
      */
     private $birthday;
 
@@ -46,11 +65,16 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
+     * @Assert\Country(message = "Cette valeur n'est pas un pays valide")
      */
     private $country;
 
     /**
      * @ORM\Column(name="reduction", type="boolean")
+     * @Assert\Type(
+     *     type = "bool",
+     *     message = "{{value}} n'est pas de type {{type}}"
+     * )
      */
     private $reduction;
 
@@ -58,6 +82,8 @@ class Ticket
      * @var int
      *
      * @ORM\Column(name="serial_number", type="smallint", unique=true)
+     * @Assert\Regex("^[0-9]{13}$")
+     *
      */
     private $serialNumber;
 
@@ -67,6 +93,11 @@ class Ticket
      * @ORM\JoinColumn(nullable=false)
      */
     private $bill;
+
+    public function __construct()
+    {
+        $this->serialNumber = mt_rand(0, 9999999999999);
+    }
 
     /**
      * Get id

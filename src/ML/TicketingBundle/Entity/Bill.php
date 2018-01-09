@@ -4,6 +4,7 @@ namespace ML\TicketingBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Bill
@@ -17,6 +18,7 @@ class Bill
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime")
+     * @Assert\Date(message = "Cette valeur n'est pas une date valide")
      */
     private $date;
 
@@ -24,6 +26,10 @@ class Bill
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=128)
+     * @Assert\Email(message = "Cette valeur n'est pas une adresse e-mail valide",
+     *     checkMX = true,
+     *     checkHost = true
+     * )
      */
     private $email;
 
@@ -40,6 +46,13 @@ class Bill
      * @var int
      *
      * @ORM\Column(name="ticket_number", type="smallint")
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 10,
+     *     minMessage = "Cette valeur doit être au minimum de {{limit}}",
+     *     maxMessage = "Cette valeur doit être au maximum de {{limit}}"
+     * )
+     * @Assert\Type("numeric")
      */
     private $ticketNumber;
 
@@ -47,18 +60,24 @@ class Bill
      * @var bool
      *
      * @ORM\Column(name="ticket_type", type="boolean")
+     * @Assert\Type(
+     *     type = "bool",
+     *     message = "{{value}} n'est pas de type {{type}}"
+     * )
      */
     private $daily;
 
     /**
      * @ORM\OneToMany(targetEntity="ML\TicketingBundle\Entity\Ticket", cascade={"persist"}, mappedBy="bill")
+     * @Assert\Valid()
      */
     private $tickets;
 
     /**
-     * @var \DateTime
+     * @var \Datetime
      *
-     * @ORM\Column(name="visit_day", type="datetime")
+     * @ORM\Column(name="visit_day", type="date")
+     * @Assert\Date(message = "Cette valeur n'est pas une date valide")
      */
     private $visitDay;
 
@@ -208,7 +227,7 @@ class Bill
     /**
      * Set visitDay
      *
-     * @param \DateTime $visitDay
+     * @param \Datetime $visitDay
      *
      * @return Ticket
      */
@@ -222,7 +241,7 @@ class Bill
     /**
      * Get visitDay
      *
-     * @return \DateTime
+     * @return \Datetime
      */
     public function getVisitDay()
     {
