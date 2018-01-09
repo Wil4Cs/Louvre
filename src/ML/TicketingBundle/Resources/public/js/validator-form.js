@@ -2,7 +2,7 @@
 $(function () {
     $.validate({
         form : '#bookingForm',
-        modules : 'html5, security, date',
+        modules : 'html5, security, date, toggleDisabled',
         lang : 'fr'
     });
 });
