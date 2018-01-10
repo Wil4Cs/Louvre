@@ -25,6 +25,7 @@ class BillType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => ['class' => 'datepicker'],
+                'format' => 'dd/MM/yyyy',
             ))
             ->add('email', RepeatedType::class, array(
                 'type'              => EmailType::class,

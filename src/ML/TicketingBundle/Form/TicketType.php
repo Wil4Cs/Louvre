@@ -37,12 +37,13 @@ class TicketType extends AbstractType
             ->add('birthday', BirthdayType::class, array(
                 'widget' => 'single_text',
                 'html5'  => false,
+                'format' => 'dd/MM/yyyy',
+                'label'  => 'Date de Naissance',
                 'attr'   => array(
                     'class'                  => 'birthDatePicker',
                     // Those attributes are required for the JQuery Form Validator only
                     'data-validation'        => 'birthdate',
-                    'data-validation-format' => 'dd/mm/yyyy'),
-                'label'  => 'Date de Naissance',
+                    'data-validation-format' => 'dd/mm/yyyy')
 
             ))
             ->add('reduction', ChoiceType::class, array(

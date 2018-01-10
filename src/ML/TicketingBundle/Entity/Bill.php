@@ -229,7 +229,7 @@ class Bill
      *
      * @param \Datetime $visitDay
      *
-     * @return Ticket
+     * @return Bill
      */
     public function setVisitDay($visitDay)
     {

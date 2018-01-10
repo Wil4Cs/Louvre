@@ -29,7 +29,12 @@ class TicketingController extends Controller
         $bill = new Bill();
         $form = $this->createForm(BillType::class, $bill);
 
-        if($request->isMethod('POST')) {
+        if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($bill);
+            $em->flush();
+
+            /*
             \Stripe\Stripe::setApiKey("sk_test_laQV9lGOvO3Up08xhDkxpr6e");
 
             // Get the credit card details submitted by the form
@@ -50,6 +55,8 @@ class TicketingController extends Controller
                 $this->addFlash("error","Snif ça marche pas :(");
                 // The card has been declined
             }
+            */
+            $this->redirectToRoute('ml_ticketing_booking');
         }
 
         return $this->render('MLTicketingBundle:Ticketing:booking.html.twig', array(
