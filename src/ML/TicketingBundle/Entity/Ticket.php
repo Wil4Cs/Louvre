@@ -81,8 +81,8 @@ class Ticket
     /**
      * @var int
      *
-     * @ORM\Column(name="serial_number", type="smallint", unique=true)
-     * @Assert\Regex("^[0-9]{13}$")
+     * @ORM\Column(name="serial_number", type="bigint", unique=true)
+     * @Assert\Regex("/^[0-9]{13}$/")
      *
      */
     private $serialNumber;
