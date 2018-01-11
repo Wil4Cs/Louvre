@@ -41,7 +41,22 @@
 
             {{ form_row(form.daily, { 'label': 'Type de billet(s)' }) }}
 
-            {{ form_row(form.ticket_number, { 'label': 'Nombre de billet(s)' }) }}
+            <div class="form-group">
+                <label for="ml_ticketingbundle_bill_ticket_number">Nombre de billet(s):</label>
+                <select class="form-control" id="ml_ticketingbundle_bill_ticket_number" disabled="disabled" required>
+                    <option value="">--Choisissez le nombre de billets--</option>
+                    <option value="1">1 billet</option>
+                    <option value="2">2 billets</option>
+                    <option value="3">3 billets</option>
+                    <option value="4">4 billets</option>
+                    <option value="5">5 billets</option>
+                    <option value="6">6 billets</option>
+                    <option value="7">7 billets</option>
+                    <option value="8">8 billets</option>
+                    <option value="9">9 billets</option>
+                    <option value="10">10 billets</option>
+                </select>
+            </div>
 
             <p class="temporary text-center">Sélectionnez un jour de visite pour commencer!</p>
         </div>

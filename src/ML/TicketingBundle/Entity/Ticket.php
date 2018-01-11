@@ -88,7 +88,7 @@ class Ticket
     private $serialNumber;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ML\TicketingBundle\Entity\Bill", inversedBy="tickets")
+     * @ORM\ManyToOne(targetEntity="ML\TicketingBundle\Entity\Bill")
      *
      * @ORM\JoinColumn(nullable=false)
      */

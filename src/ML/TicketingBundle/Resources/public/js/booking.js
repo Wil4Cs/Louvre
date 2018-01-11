@@ -59,7 +59,7 @@ $(function () {
             firstDay: 1,
             changeYear: true,
             changeMonth: true,
-            yearRange: "c-30:c+30",
+            yearRange: "c-110:c+30",
             prevText: "Précédent",
             nextText: "Suivant"
         });
@@ -147,15 +147,15 @@ $(function () {
 
     function selectTicketPrice(index,age) {
         // Some selectors
-        var radioSelectors = $('[id^="ml_ticketingbundle_bill_tickets_'+ index +'_reduction_"]'),
-            reduction = $('#ml_ticketingbundle_bill_tickets_'+ index +'_reduction_0'),
+        var reduction = $('#ml_ticketingbundle_bill_tickets_'+ index +'_reduction_0'),
             noReduction = $('#ml_ticketingbundle_bill_tickets_'+ index +'_reduction_1');
 
         var json = ajaxCall();
-        // Find the price depending the age && disabled or enabled the reduced radio buttons
+
+        // Find the price depending the age && disabled or enabled the reduced radio button
         if (age < json.ticket.normal.age) {
-            if (radioSelectors.is(':enabled')) {
-                radioSelectors.prop('disabled', true);
+            if (reduction.is(':enabled')) {
+                reduction.prop('disabled', true);
                 noReduction.prop('checked', true);
             }
             if (age < json.ticket.teenager.age) {
@@ -164,8 +164,8 @@ $(function () {
                 return json.ticket.teenager.price;
             }
         } else {
-            if (radioSelectors.is(':disabled')) {
-                radioSelectors.prop('disabled', false);
+            if (reduction.is(':disabled')) {
+                reduction.prop('disabled', false);
             }
             if (reduction.is(':checked') === true) {
                 return json.ticket.reduced.price;

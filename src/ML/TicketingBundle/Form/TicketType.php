@@ -47,15 +47,12 @@ class TicketType extends AbstractType
 
             ))
             ->add('reduction', ChoiceType::class, array(
-                'label'    => 'Réduction',
-                'choices'  => array(
-                    'Oui'  => true,
-                    'Non'  => false
+                'choices' => array(
+                    'Oui (pour les + de 12ans seulement)' => true,
+                    'Non' => false
                 ),
-                'disabled'     => true,
-                'data'     => 0,
-                'multiple' => false,
-                'expanded' => true
+                'expanded'=> true,
+                'multiple'=> false
             ))
             ->add('country', CountryType::class, array(
                 'data'  => 'FR',

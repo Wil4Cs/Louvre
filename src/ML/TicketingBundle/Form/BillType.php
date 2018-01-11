@@ -44,6 +44,7 @@ class BillType extends AbstractType
                 'expanded'=> true,
                 'multiple'=> false
             ))
+            /*
             ->add('ticket_number',ChoiceType::class, array(
                 'disabled' => true,
                 'placeholder' => 'Choisissez le nombre de billets',
@@ -59,7 +60,7 @@ class BillType extends AbstractType
                     '9' => 9,
                     '10'=> 10
                 ),
-            ))
+            ))*/
             ->add('tickets', CollectionType::class, array(
                 'label'        => false,
                 'entry_type'   => TicketType::class,

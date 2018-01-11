@@ -43,20 +43,6 @@ class Bill
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="ticket_number", type="smallint")
-     * @Assert\Range(
-     *     min = 1,
-     *     max = 10,
-     *     minMessage = "Cette valeur doit être au minimum de {{limit}}",
-     *     maxMessage = "Cette valeur doit être au maximum de {{limit}}"
-     * )
-     * @Assert\Type("numeric")
-     */
-    private $ticketNumber;
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="ticket_type", type="boolean")
@@ -69,7 +55,7 @@ class Bill
 
     /**
      * @ORM\OneToMany(targetEntity="ML\TicketingBundle\Entity\Ticket", cascade={"persist"}, mappedBy="bill")
-     * @Assert\Valid()
+     *
      */
     private $tickets;
 
@@ -162,30 +148,6 @@ class Bill
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set ticketNumber
-     *
-     * @param integer $ticketNumber
-     *
-     * @return Bill
-     */
-    public function setTicketNumber($ticketNumber)
-    {
-        $this->ticketNumber = $ticketNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get ticketNumber
-     *
-     * @return integer
-     */
-    public function getTicketNumber()
-    {
-        return $this->ticketNumber;
     }
 
     /**

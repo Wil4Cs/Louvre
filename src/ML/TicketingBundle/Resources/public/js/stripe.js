@@ -1,4 +1,4 @@
-$(function () {
+/*$(function () {
 
     var handler = StripeCheckout.configure({
         key: 'pk_test_DNvpkGJnDd2qWkgbcehBjeKA',
@@ -35,4 +35,4 @@ $(function () {
     window.addEventListener('popstate', function() {
         handler.close();
     });
-});
+});*/
