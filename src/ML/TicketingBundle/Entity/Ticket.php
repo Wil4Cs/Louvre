@@ -4,17 +4,12 @@ namespace ML\TicketingBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Ticket
  *
  * @ORM\Table(name="ml_ticket")
  * @ORM\Entity(repositoryClass="ML\TicketingBundle\Repository\TicketRepository")
- * @UniqueEntity(
- *     fields = {"serialNumber"},
- *     message = "Ce numéro de série est déjà utilisé"
- * )
  */
 class Ticket
 {
@@ -79,25 +74,11 @@ class Ticket
     private $reduction;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="serial_number", type="bigint", unique=true)
-     * @Assert\Regex("/^[0-9]{13}$/")
-     *
-     */
-    private $serialNumber;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="ML\TicketingBundle\Entity\Bill")
+     * @ORM\ManyToOne(targetEntity="ML\TicketingBundle\Entity\Bill", inversedBy="tickets")
      *
      * @ORM\JoinColumn(nullable=false)
      */
     private $bill;
-
-    public function __construct()
-    {
-        $this->serialNumber = mt_rand(0, 9999999999999);
-    }
 
     /**
      * Get id
@@ -219,30 +200,6 @@ class Ticket
     public function setReduction($reduction)
     {
         $this->reduction = $reduction;
-    }
-
-    /**
-     * Set serialNumber
-     *
-     * @param integer $serialNumber
-     *
-     * @return Ticket
-     */
-    public function setSerialNumber($serialNumber)
-    {
-        $this->serialNumber = $serialNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get serialNumber
-     *
-     * @return int
-     */
-    public function getSerialNumber()
-    {
-        return $this->serialNumber;
     }
 
     /**

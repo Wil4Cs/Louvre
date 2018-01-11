@@ -5,15 +5,31 @@ namespace ML\TicketingBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Bill
  *
  * @ORM\Table(name="ml_bill")
  * @ORM\Entity(repositoryClass="ML\TicketingBundle\Repository\BillRepository")
+ * @UniqueEntity(
+ *     fields = {"serialNumber"},
+ *     message = "Ce numéro de série est déjà utilisé"
+ * )
  */
 class Bill
 {
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="ticket_type", type="boolean")
+     * @Assert\Type(
+     *     type = "bool",
+     *     message = "{{value}} n'est pas de type {{type}}"
+     * )
+     */
+    private $daily;
+
     /**
      * @var \DateTime
      *
@@ -43,19 +59,17 @@ class Bill
     private $id;
 
     /**
-     * @var bool
+     * @var int
      *
-     * @ORM\Column(name="ticket_type", type="boolean")
-     * @Assert\Type(
-     *     type = "bool",
-     *     message = "{{value}} n'est pas de type {{type}}"
-     * )
+     * @ORM\Column(name="serial_number", type="bigint", unique=true)
+     * @Assert\Regex("/^[0-9]{13}$/")
+     *
      */
-    private $daily;
+    private $serialNumber;
 
     /**
      * @ORM\OneToMany(targetEntity="ML\TicketingBundle\Entity\Ticket", cascade={"persist"}, mappedBy="bill")
-     *
+     * @Assert\Valid()
      */
     private $tickets;
 
@@ -74,6 +88,7 @@ class Bill
     {
         $this->date = new \DateTime();
         $this->tickets = new ArrayCollection();
+        $this->serialNumber = mt_rand(0, 9999999999999);
     }
 
     /**
@@ -148,6 +163,30 @@ class Bill
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set serialNumber
+     *
+     * @param integer $serialNumber
+     *
+     * @return Bill
+     */
+    public function setSerialNumber($serialNumber)
+    {
+        $this->serialNumber = $serialNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get serialNumber
+     *
+     * @return int
+     */
+    public function getSerialNumber()
+    {
+        return $this->serialNumber;
     }
 
     /**

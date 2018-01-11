@@ -31,6 +31,12 @@ class TicketingController extends Controller
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $tickets = $bill->getTickets();
+            foreach ($tickets as $ticket) {
+                $bill->addTicket($ticket);
+            }
+
             $em->persist($bill);
             $em->flush();
 
@@ -56,7 +62,7 @@ class TicketingController extends Controller
                 // The card has been declined
             }
             */
-            $this->redirectToRoute('ml_ticketing_booking');
+            return $this->redirectToRoute('ml_ticketing_booking');
         }
 
         return $this->render('MLTicketingBundle:Ticketing:booking.html.twig', array(
