@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="ml_ticket")
  * @ORM\Entity(repositoryClass="ML\TicketingBundle\Repository\TicketRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Ticket
 {
@@ -63,6 +64,17 @@ class Ticket
      * @Assert\Country(message = "Cette valeur n'est pas un pays valide")
      */
     private $country;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="smallint")
+     * @Assert\Type(
+     *     type="integer",
+     *     message="Cette valeur  {{ value }} n'est pas un {{ type }} valide."
+     * )
+     */
+    private $price;
 
     /**
      * @ORM\Column(name="reduction", type="boolean")
@@ -184,6 +196,30 @@ class Ticket
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     *
+     * @return Ticket
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
     }
 
     /**
