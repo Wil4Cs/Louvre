@@ -22,7 +22,7 @@ class Bill
     /**
      * @var bool
      *
-     * @ORM\Column(name="ticket_type", type="boolean")
+     * @ORM\Column(name="order_type", type="boolean")
      * @Assert\Type(
      *     type = "bool",
      *     message = "{{value}} n'est pas de type {{type}}"
@@ -89,6 +89,20 @@ class Bill
         $this->date = new \DateTime();
         $this->tickets = new ArrayCollection();
         $this->serialNumber = mt_rand(0, 9999999999999);
+    }
+
+    /**
+     * Return the total price of all tickets link to the bill
+     */
+    public function getTotalPrice()
+    {
+        $price = 0;
+        $tickets = $this->getTickets();
+        foreach ($tickets as $ticket) {
+            $price += $ticket->getPrice();
+        }
+
+        return $price;
     }
 
     /**
