@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="ml_ticket")
  * @ORM\Entity(repositoryClass="ML\TicketingBundle\Repository\TicketRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class Ticket
 {
@@ -30,8 +29,8 @@ class Ticket
      * @Assert\Length(
      *     min = 3,
      *     max = 255,
-     *     minMessage = "Votre prénom doit comporter au moins {{limit}} caractères",
-     *     maxMessage = "Votre prénom ne doit pas comporter plus de {{limit}} caractères"
+     *     minMessage = "Votre prénom doit comporter au moins {{ limit }} caractères",
+     *     maxMessage = "Votre prénom ne doit pas comporter plus de {{ limit }} caractères"
      * )
      */
     private $firstName;
@@ -43,8 +42,8 @@ class Ticket
      * * @Assert\Length(
      *     min = 3,
      *     max = 255,
-     *     minMessage = "Votre nom doit comporter au moins {{limit}} caractères",
-     *     maxMessage = "Votre nom ne doit pas comporter plus de {{limit}} caractères"
+     *     minMessage = "Votre nom doit comporter au moins {{ limit }} caractères",
+     *     maxMessage = "Votre nom ne doit pas comporter plus de {{ limit }} caractères"
      * )
      */
     private $lastName;
