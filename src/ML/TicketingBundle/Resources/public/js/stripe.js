@@ -1,4 +1,4 @@
-/*$(function () {
+$(function () {
 
     var handler = StripeCheckout.configure({
         key: 'pk_test_DNvpkGJnDd2qWkgbcehBjeKA',
@@ -15,7 +15,7 @@
         var amount = $('#basket').text(),
             amount = amount.replace(/\$/g, '').replace(/\,/g, ''),
             amount = parseFloat(amount),
-            amount = amount * 100,
+            amount = (amount * 100),
             email = $('#ml_ticketingbundle_bill_email_first').val();
 
         // Open Checkout with further options:
@@ -35,4 +35,4 @@
     window.addEventListener('popstate', function() {
         handler.close();
     });
-});*/
+});

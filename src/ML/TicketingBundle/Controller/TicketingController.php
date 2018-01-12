@@ -38,32 +38,16 @@ class TicketingController extends Controller
                 $ticket->setPrice($price);
                 $ticket->setBill($bill);
             }
-            $amount = $bill->getTotalPrice();
 
+            $amount = $bill->getTotalPrice();
+            $stripeToken = $_POST['stripeToken'];
+            $this->get('ml_ticketing.stripe')->validCharge($stripeToken, $amount);
+
+            $bill->setStripeToken($stripeToken);
             $em->persist($bill);
             $em->flush();
 
-
-            //\Stripe\Stripe::setApiKey("sk_test_laQV9lGOvO3Up08xhDkxpr6e");
-//
-            //// Get the credit card details submitted by the form
-            //$token = $_POST['stripeToken'];
-//
-            //// Create a charge: this will charge the user's card
-            //try {
-            //    $charge = \Stripe\Charge::create(array(
-            //        "amount" => $amount, // Amount in cents
-            //        "currency" => "eur",
-            //        "source" => $token,
-            //        "description" => "Paiement Stripe - Le Musée du Louvre"
-            //    ));
-            //    $this->addFlash("success","Bravo ça marche !");
-//
-            //} catch(\Stripe\Error\Card $e) {
-//
-            //    $this->addFlash("error","Snif ça marche pas :(");
-            //    // The card has been declined
-            //}
+            $request->getSession()->getFlashBag()->add('success', 'Votre commande a bien été réservée');
 
             return $this->redirectToRoute('ml_ticketing_booking');
         }

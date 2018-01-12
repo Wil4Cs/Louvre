@@ -6,3 +6,6 @@ services:
 
     ml_ticketing.recover:
         class: ML\TicketingBundle\ComputePrice\MLRecoverData
+
+    ml_ticketing.stripe:
+        class: ML\TicketingBundle\StripeService\MLStripeService
