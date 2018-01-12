@@ -16,6 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *     fields = {"serialNumber"},
  *     message = "Ce numéro de série est déjà utilisé"
  * )
+ * @ORM\HasLifecycleCallbacks()
  */
 class Bill
 {
@@ -62,8 +63,6 @@ class Bill
      * @var int
      *
      * @ORM\Column(name="serial_number", type="bigint", unique=true)
-     * @Assert\Regex("/^[0-9]{13}$/")
-     *
      */
     private $serialNumber;
 
@@ -72,6 +71,13 @@ class Bill
      * @Assert\Valid()
      */
     private $tickets;
+
+    /**
+     * var string
+     *
+     * @ORM\Column(name="stripe_token", type="string", length=128)
+     */
+    private $stripeToken;
 
     /**
      * @var \Datetime
@@ -88,7 +94,6 @@ class Bill
     {
         $this->date = new \DateTime();
         $this->tickets = new ArrayCollection();
-        $this->serialNumber = mt_rand(0, 9999999999999);
     }
 
     /**
@@ -103,6 +108,16 @@ class Bill
         }
 
         return $price;
+    }
+
+    /**
+     * Create a serial number
+     *
+     * @ORM\PrePersist
+     */
+    public function createSerialNumber()
+    {
+        $this->setSerialNumber(mt_rand(0, 9999999999999));
     }
 
     /**
@@ -237,6 +252,30 @@ class Bill
     public function getTickets()
     {
         return $this->tickets;
+    }
+
+    /**
+     * Get stripe token
+     *
+     * @return string
+     */
+    public function getStripeToken()
+    {
+        return $this->stripeToken;
+    }
+
+    /**
+     * Set stripe token
+     *
+     * @param string $stripeToken
+     *
+     * @return Bill
+     */
+    public function setStripeToken($stripeToken)
+    {
+        $this->stripeToken = $stripeToken;
+
+        return $this;
     }
 
     /**
