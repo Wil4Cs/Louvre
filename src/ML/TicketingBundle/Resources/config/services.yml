@@ -1,3 +1,8 @@
 services:
     ml_ticketing.price:
-        class: ML\TicketingBundle\CalculPrice\MLCalculPrice
+        class: ML\TicketingBundle\ComputePrice\MLComputePrice
+        arguments:
+            - "@ml_ticketing.recover"
+
+    ml_ticketing.recover:
+        class: ML\TicketingBundle\ComputePrice\MLRecoverData

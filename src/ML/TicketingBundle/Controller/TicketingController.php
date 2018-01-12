@@ -6,7 +6,6 @@ use ML\TicketingBundle\Entity\Bill;
 use ML\TicketingBundle\Form\BillType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class TicketingController extends Controller
 {
@@ -40,6 +39,7 @@ class TicketingController extends Controller
                 $ticket->setBill($bill);
             }
             $amount = $bill->getTotalPrice();
+
             $em->persist($bill);
             $em->flush();
 
