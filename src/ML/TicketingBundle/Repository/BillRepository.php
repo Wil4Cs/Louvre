@@ -10,4 +10,22 @@ namespace ML\TicketingBundle\Repository;
  */
 class BillRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function countTicketsByDay($date)
+    {
+        $qb = $this->createQueryBuilder('b');
+        $qb //->select('count(b)')
+            ->where('b.visitDay = :date')
+            ->setParameter('date', $date)
+        ;
+
+        $qb ->leftJoin('b.tickets', 't')
+            ->addSelect('t')
+            ->select('count(t)')
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
 }

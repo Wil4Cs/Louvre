@@ -6,6 +6,7 @@ use ML\TicketingBundle\Entity\Bill;
 use ML\TicketingBundle\Form\BillType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\Date;
 
 class TicketingController extends Controller
 {
@@ -31,6 +32,12 @@ class TicketingController extends Controller
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            $quantity = $this->getDoctrine()->getManager()->getRepository('MLTicketingBundle:Bill')->countTicketsByDay($bill->getVisitDay());
+            if ($quantity >= $this->getParameter('max')) {
+                $request->getSession()->getFlashBag()->add('full', 'Complet pour le '.$bill->getVisitDay()->format('d-m-Y'));
+                return $this->redirectToRoute('ml_ticketing_booking');
+            }
 
             $tickets = $bill->getTickets();
             foreach ($tickets as $ticket) {
