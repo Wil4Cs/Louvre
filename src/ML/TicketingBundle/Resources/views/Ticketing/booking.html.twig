@@ -27,7 +27,16 @@
     </div>
 
     {% for message in app.session.flashbag.get('success') %}
-        <div class="col-xs-12 alert alert-info">Message flash : {{ message }}</div>
+        <div class="col-xs-12 alert alert-success">Message flash : {{ message }}</div>
+    {% endfor %}
+
+    {% for message in app.session.flashbag.get('full') %}
+        <div class="col-xs-12 alert alert-warning">
+            <p class ="text-center">{{ message }}</p>
+            <hr>
+            <p class ="text-center">Nous avons atteint le seuil maximum autorisé à cette date. Nous vous invitons à sélectionner un autre jour de visite!</p>
+            <p class="text-center">Bien entendu, aucun prélévement n'a été effectué sur votre compte.</p>
+        </div>
     {% endfor %}
 
     <div class="sticky col-xs-offset-3 col-xs-6 col-sm-offset-9 col-sm-3 col-md-offset-10 col-md-2"><i class="fa fa-shopping-basket" aria-hidden="true"></i>&nbsp;Panier : <span id="basket"></span>€</div>
