@@ -9,3 +9,6 @@ services:
 
     ml_ticketing.stripe:
         class: ML\TicketingBundle\StripeService\MLStripeService
+
+parameters:
+    max: 1000
