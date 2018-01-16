@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Titre de la page</title>
+    <style type="text/css">
+        .content {
+            border: 1px solid grey;
+            border-radius: 3px;
+            padding-left: 20px;
+            width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        span {
+            font-weight: bold;
+            color: #505050;
+        }
+        p {
+            color: #504F6F;
+        }
+        .ticket {
+            border: 1px solid black;
+            width: 500px;
+            background-image: linear-gradient(rgba(12, 150, 250, 0.3), rgba(255, 255, 255, 0.5), rgba(12, 150, 250, 0.3));
+            height: 200px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .flex-container {
+            display: flex;
+            padding: 0 10px 0 10px;
+        }
+        .info {
+            justify-content: space-around;
+        }
+        .serial {
+            justify-content: center;
+            align-self: flex-end;
+            padding-top: 20px;
+            font-style: italic;
+        }
+        .head {
+            justify-content: space-between;
+            border-bottom: 1px solid grey;
+            padding-top: 10px;
+        }
+        .identity {
+            justify-content: space-between;
+        }
+        .box {
+            border: 1px solid black;
+            width: 17px;
+            height: 17px;
+        }
+        div.relative {
+            position: relative;
+            top: -200px;
+        }
+        .reduction {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <p>Bonjour!</p>
+
+    <p>Voici le récapitulatif de votre commande!</p>
+
+    <p>
+        <span>Numéro de commande : </span>{{ bill.serialNumber }}<br/>
+        <span>Jour de visite : </span>{{ bill.visitDay|date('d-m-Y') }}<br/>
+        <span>Type de billets : </span>{% if bill.daily == 1 %}Journée{% else %}Demi-journée{% endif %}<br/>
+        <span>Nombre de billet(s) : </span>{{ bill.tickets|length }}<br/>
+        <span>Prix total : </span>{{ bill.getTotalPrice }} €
+    </p>
+
+    {% for ticket in bill.tickets %}
+        <div class="ticket">
+            <img src="{{ absolute_url(asset('img/billet.png')) }}">
+            <div class="relative">
+                <div class="flex-container head">
+                    <div>LE LOUVRE</div>
+                    <img src="{{ absolute_url(asset('img/pyramide.png')) }}">
+                    <div>BILLET</div>
+                </div>
+                <div class="flex-container identity">
+                    <h2>
+                        PRÉNOM :&nbsp;{{ ticket.firstName|lower }}<br/>
+                        NOM :&nbsp;{{ ticket.lastName|lower }}
+                    </h2>
+                    <h2>{{ bill.visitDay|date('d-m-Y') }}<br/>
+                        {% if bill.daily == 1 %}Journée{% else %}Demi-journée{% endif %}
+                    </h2>
+                </div>
+                <div class="flex-container info">
+                    <div class="reduction">Reduction :
+                        &nbsp;OUI&nbsp;<div class="box">{% if ticket.reduction == 1 %}&check;{% else %}{% endif %}</div>
+                        &nbsp;NON&nbsp;<div class="box">{% if ticket.reduction == 0 %}&check;{% else %}{% endif %}</div>
+                    </div>
+                    <div>{{ ticket.country }}</div>
+                    <div>{{ ticket.price }} €</div>
+                </div>
+                <div class="flex-container serial">
+                    <p>{{ bill.serialNumber }}</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <p>Munissez vous directement de cet email ou imprimez vos billets pour accéder au musée.</p>
+
+    <p>Le musée du Louvre vous remercie et vous souhaite une agréable visite!</p>
+</div>
+</body>
+</html>
