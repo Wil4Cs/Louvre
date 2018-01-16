@@ -6,7 +6,6 @@ use ML\TicketingBundle\Entity\Bill;
 use ML\TicketingBundle\Form\BillType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\Date;
 
 class TicketingController extends Controller
 {
@@ -33,29 +32,27 @@ class TicketingController extends Controller
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $quantity = $this->getDoctrine()->getManager()->getRepository('MLTicketingBundle:Bill')->countTicketsByDay($bill->getVisitDay());
-            if ($quantity >= $this->getParameter('max')) {
+            $quantity = $em->getRepository('MLTicketingBundle:Bill')->countTicketsByDay($bill->getVisitDay());
+            if ($quantity > $this->getParameter('maxCapacity')) {
                 $request->getSession()->getFlashBag()->add('full', 'Complet pour le '.$bill->getVisitDay()->format('d-m-Y'));
-                return $this->redirectToRoute('ml_ticketing_booking');
+            } else {
+
+                $tickets = $bill->getTickets();
+                foreach ($tickets as $ticket) {
+                    $price = $this->get('ml_ticketing.compute_price')->givePrice($ticket, $bill);
+                    $ticket->setPrice($price);
+                    $ticket->setBill($bill);
+                }
+
+                $amount = $bill->getTotalPrice();
+                $stripeToken = $_POST['stripeToken'];
+                $this->get('ml_ticketing.stripe_service')->validCharge($stripeToken, $amount);
+
+                $bill->setStripeToken($stripeToken);
+                $em->persist($bill);
+                $em->flush();
+                $request->getSession()->getFlashBag()->add('success', 'Votre commande a bien été prise en compte.');
             }
-
-            $tickets = $bill->getTickets();
-            foreach ($tickets as $ticket) {
-                $price = $this->get('ml_ticketing.price')->givePrice($ticket, $bill);
-                $ticket->setPrice($price);
-                $ticket->setBill($bill);
-            }
-
-            $amount = $bill->getTotalPrice();
-            $stripeToken = $_POST['stripeToken'];
-            $this->get('ml_ticketing.stripe')->validCharge($stripeToken, $amount);
-
-            $bill->setStripeToken($stripeToken);
-            $em->persist($bill);
-            $em->flush();
-
-            $request->getSession()->getFlashBag()->add('success', 'Votre commande a bien été réservée');
-
             return $this->redirectToRoute('ml_ticketing_booking');
         }
 
