@@ -62,7 +62,7 @@
         <div class="container">
             <hr>
             <footer>
-                <p class="signature">&copy; Wil4Cs</p>
+                <p class="signature">&copy; {% if webmaster is defined %}{{ webmaster }}{% endif %}{% if webmaster is empty %}Company{% endif %}</p>
             </footer>
         </div> <!-- /container -->
 

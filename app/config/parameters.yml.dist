@@ -17,3 +17,6 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    # The name of company or webmaster. Appear in the footer
+    app_webmaster: Company
