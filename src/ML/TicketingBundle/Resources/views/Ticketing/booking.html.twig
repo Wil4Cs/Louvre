@@ -27,15 +27,17 @@
     </div>
 
     {% for message in app.session.flashbag.get('success') %}
-        <div class="col-xs-12 alert alert-success">Message flash : {{ message }}</div>
+        <div class="col-xs-12 alert alert-success text-center">
+            <p>{{ message }} Un email de confirmation vous a été envoyé !</p>
+        </div>
     {% endfor %}
 
     {% for message in app.session.flashbag.get('full') %}
-        <div class="col-xs-12 alert alert-warning">
-            <p class ="text-center">{{ message }}</p>
+        <div class="col-xs-12 alert alert-warning text-center">
+            <p>{{ message }}</p>
             <hr>
-            <p class ="text-center">Nous avons atteint le seuil maximum autorisé à cette date. Nous vous invitons à sélectionner un autre jour de visite!</p>
-            <p class="text-center">Bien entendu, aucun prélévement n'a été effectué sur votre compte.</p>
+            <p>Nous avons atteint le seuil maximum autorisé à cette date. Nous vous invitons à sélectionner un autre jour de visite!</p>
+            <p>Bien entendu, aucun prélévement n'a été effectué sur votre compte.</p>
         </div>
     {% endfor %}
 
