@@ -2,6 +2,9 @@
 
 namespace ML\TicketingBundle\ComputePrice;
 
+use ML\TicketingBundle\Entity\Bill;
+use ML\TicketingBundle\Entity\Ticket;
+
 class MLComputePrice
 {
     /**
@@ -9,12 +12,12 @@ class MLComputePrice
      */
     private $dataTickets;
 
-    public function __construct($dataTickets)
+    public function __construct(MLRecoverData $dataTickets)
     {
         $this->dataTickets = $dataTickets;
     }
 
-    public function givePrice($ticket, $bill)
+    public function givePrice(Ticket $ticket, Bill $bill)
     {
         $birthday = $ticket->getBirthday();
         $visitDay = $bill->getVisitDay();
