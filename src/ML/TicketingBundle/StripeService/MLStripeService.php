@@ -2,7 +2,6 @@
 
 namespace ML\TicketingBundle\StripeService;
 
-
 use Symfony\Component\Config\Definition\Exception\Exception;
 
 class MLStripeService
@@ -10,7 +9,7 @@ class MLStripeService
     public function validCharge($token, $amount)
     {
         if ($amount === 0) {
-            throw new Exception('Les enfants doivent absolument être sous la surveillance d\'un adulte. Vous devez commander au minimum 1 billet pour un accompagnateur.');
+            return;
         }
 
         \Stripe\Stripe::setApiKey("sk_test_laQV9lGOvO3Up08xhDkxpr6e");
