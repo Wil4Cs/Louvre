@@ -1,14 +1,30 @@
 services:
-    ml_ticketing.price:
+    ml_ticketing.compute_price:
         class: ML\TicketingBundle\ComputePrice\MLComputePrice
         arguments:
-            - "@ml_ticketing.recover"
+            - "@ml_ticketing.recover_data"
 
-    ml_ticketing.recover:
+    ml_ticketing.recover_data:
         class: ML\TicketingBundle\ComputePrice\MLRecoverData
 
-    ml_ticketing.stripe:
+    ml_ticketing.stripe_service:
         class: ML\TicketingBundle\StripeService\MLStripeService
 
+    ml_ticketing.bill_mailer:
+        class: ML\TicketingBundle\Email\BillMailer
+        arguments:
+            - "@mailer"
+            - "@twig"
+
+    ml_ticketing.bill_listener:
+        class: ML\TicketingBundle\DoctrineListener\BillListener
+        arguments:
+            - "@ml_ticketing.bill_mailer"
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+
+## Service parameters for TicketingBundle only
 parameters:
-    max: 1000
+    ## Maximum accommodation capacity for the museum in number of pax
+    ## Use with Bill entity method countTicketsByDay to compare
+    maxCapacity: 1000
