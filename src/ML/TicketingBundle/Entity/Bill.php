@@ -69,6 +69,12 @@ class Bill
     /**
      * @ORM\OneToMany(targetEntity="ML\TicketingBundle\Entity\Ticket", cascade={"persist"}, mappedBy="bill")
      * @Assert\Valid()
+     * @Assert\Count(
+     *     min = 1,
+     *     max = 10,
+     *     minMessage = "Une commande doit comporter au minimum {{ value }} billet",
+     *     maxMessage = "Une commande ne peut comporter que {{ value }} billets maximum"
+     * )
      */
     private $tickets;
 
@@ -84,6 +90,7 @@ class Bill
      *
      * @ORM\Column(name="visit_day", type="date")
      * @Assert\Date(message = "Cette valeur n'est pas une date valide")
+     * @Assert\GreaterThanOrEqual("today UTC")
      */
     private $visitDay;
 

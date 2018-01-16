@@ -53,13 +53,14 @@ class Ticket
      *
      * @ORM\Column(name="birthday", type="date")
      * @Assert\Date(message = "Cette valeur n'est pas une date valide")
+     * @Assert\LessThan("today UTC", message = "Cette valeur doit être inférieure à {{ compared_value }}")
      */
     private $birthday;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="country", type="string", length=255)
+     * @ORM\Column(name="country", type="string", length=128)
      * @Assert\Country(message = "Cette valeur n'est pas un pays valide")
      */
     private $country;
