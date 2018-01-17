@@ -48,7 +48,8 @@ class BillType extends AbstractType
                 'label'        => false,
                 'entry_type'   => TicketType::class,
                 'allow_add'    => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'by_reference' => false
             ))
             ->add('save', SubmitType::class)
         ;

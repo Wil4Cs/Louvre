@@ -37,12 +37,7 @@ class TicketingController extends Controller
                 $request->getSession()->getFlashBag()->add('full', 'Complet pour le '.$bill->getVisitDay()->format('d-m-Y'));
             } else {
 
-                $tickets = $bill->getTickets();
-                foreach ($tickets as $ticket) {
-                    $price = $this->get('ml_ticketing.compute_price')->givePrice($ticket, $bill);
-                    $ticket->setPrice($price);
-                    $ticket->setBill($bill);
-                }
+                $this->get('ml_ticketing.compute_price')->givePrice($bill);
 
                 $amount = $bill->getTotalPrice();
                 $stripeToken = $_POST['stripeToken'];
