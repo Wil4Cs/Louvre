@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="ML\TicketingBundle\Repository\BillRepository")
  * @UniqueEntity(
  *     fields = {"serialNumber"},
- *     message = "Ce numéro de série est déjà utilisé"
+ *     message = "Une erreur est survenue lors de la validation de votre commande. Nous vous prions de nous en excuser!"
  * )
  * @ORM\HasLifecycleCallbacks()
  */
@@ -144,7 +144,7 @@ class Bill
      */
     public function createSerialNumber()
     {
-        $this->setSerialNumber(mt_rand(0, 9999999999999));
+        $this->setSerialNumber(uniqid('MDL_'));
     }
 
     /**
