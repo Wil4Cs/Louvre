@@ -106,7 +106,25 @@ class Bill
     }
 
     /**
-     * Return the total price of all tickets link to the bill
+     * Validate if someone try to order a daily ticket after 2pm (14:00:00)
+     *
+     * @Assert\IsTrue(message="Impossible de commander un billet Journée pour aujourd'hui après 14h")
+     */
+    public function isDate()
+    {
+        $todayDate = $this->date->format('d m Y');
+        $todayHour = $this->date->format('H');
+        $visitDate = $this->visitDay->format('d m Y');
+
+        if ($todayDate === $visitDate && $todayHour >= 14 && $this->daily === true) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
+     * Compute the total price of all tickets link to the bill
      */
     public function getTotalPrice()
     {
@@ -120,7 +138,7 @@ class Bill
     }
 
     /**
-     * Create a serial number
+     * Create a serial number before flush
      *
      * @ORM\PrePersist
      */
