@@ -26,6 +26,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=255)
+     * @Assert\NotNull(message = "Ce champ ne peut être nul")
      * @Assert\Length(
      *     min = 3,
      *     max = 255,
@@ -39,7 +40,8 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="last_name", type="string", length=255)
-     * * @Assert\Length(
+     * @Assert\NotNull(message = "Ce champ ne peut être nul")
+     * @Assert\Length(
      *     min = 3,
      *     max = 255,
      *     minMessage = "Votre nom doit comporter au moins {{ limit }} caractères",
@@ -52,8 +54,9 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="birthday", type="date")
+     * @Assert\NotNull(message = "Ce champ ne peut être nul")
      * @Assert\Date(message = "Cette valeur n'est pas une date valide")
-     * @Assert\LessThan("today UTC", message = "Cette valeur doit être inférieure à {{ compared_value }}")
+     * @Assert\LessThan("today", message = "Cette date doit être inférieure au {{ compared_value }}")
      */
     private $birthday;
 
@@ -61,6 +64,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=128)
+     * @Assert\NotNull(message = "Ce champ ne peut être nul")
      * @Assert\Country(message = "Cette valeur n'est pas un pays valide")
      */
     private $country;
@@ -80,7 +84,7 @@ class Ticket
      * @ORM\Column(name="reduction", type="boolean")
      * @Assert\Type(
      *     type = "bool",
-     *     message = "{{value}} n'est pas de type {{type}}"
+     *     message = "{{ value }} n'est pas de type {{ type }}"
      * )
      */
     private $reduction;
