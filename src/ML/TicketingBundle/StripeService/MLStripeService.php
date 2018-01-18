@@ -8,8 +8,9 @@ class MLStripeService
 {
     public function validCharge($token, $amount)
     {
+        // Stripe don't support free payment. So just exit service
         if ($amount === 0) {
-            return;
+            return true;
         }
 
         \Stripe\Stripe::setApiKey("sk_test_laQV9lGOvO3Up08xhDkxpr6e");
@@ -22,8 +23,20 @@ class MLStripeService
                 "source" => $token,
                 "description" => "Paiement Stripe - Le Musée du Louvre"
             ));
-        } catch (\Stripe\Error\Card $e) {
-            throw new Exception("Une erreur lors du paiement est survenue!".$e->getMessage());
+        } catch(\Stripe\Error\Card $e) {
+            return false;
+        } catch (\Stripe\Error\RateLimit $e) {
+            return false;
+        } catch (\Stripe\Error\InvalidRequest $e) {
+            return false;
+        } catch (\Stripe\Error\Authentication $e) {
+            return false;
+        } catch (\Stripe\Error\ApiConnection $e) {
+            return false;
+        } catch (\Stripe\Error\Base $e) {
+            return false;
+        } catch (Exception $e) {
+            return false;
         }
     }
 }
