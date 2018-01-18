@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Musée du Louvre - Erreur</title>
+        <style type="text/css">
+            div, h2, h3, h4 {
+                display: flex;
+                justify-content: center;
+            }
+            img {
+                box-shadow: grey 4px 4px 12px;
+                border-radius: 250px;
+                height: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Une erreur {{ status_code }} est survenue!</h2>
+        <h3>Page introuvable...</h3>
+
+        <div>
+            <img src="{{ asset('img/question.jpg') }}" alt="erreur 404" />
+        </div>
+
+        <h4><a href="{{ path('ml_core_homepage') }}">Revenir à page d'accueil</a></h4>
+    </body>
+</html>
