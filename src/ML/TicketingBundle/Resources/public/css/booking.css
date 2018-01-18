@@ -1,21 +1,15 @@
-.ticket-pair, .ticket-impair {
+.ticket {
     border: solid #CCCCCC 1px;
     padding: 10px 20px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 10px;
     box-shadow: grey 2px 2px 6px;
 }
-
-.ticket-pair > label , .ticket-impair > label{
+.ticket > label {
     display: flex;
     justify-content: center;
 }
-
-.ticket-pair {
-    margin-left: 5px;
-}
-
 .sticky {
     position: -webkit-sticky;
     position: sticky;
@@ -42,10 +36,18 @@
 }
 
 @media(max-width:767px){
-    .ticket-pair, .ticket-impair{
+    .ticket{
         margin: 15px 15px 0 15px;
     }
     .sticky {
         text-align: center;
+    }
+}
+@media(min-width:768px){
+    .ticket:nth-child(even){
+        margin-left: 20px;
+    }
+    .ticket:nth-child(odd){
+        margin-left: -10px;
     }
 }
