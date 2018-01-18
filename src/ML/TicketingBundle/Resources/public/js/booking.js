@@ -82,22 +82,12 @@ $(function () {
     });
 
     function addTicket(container) {
-        // Add a class depending of the ticket number for rendering with CSS. Pair or impair
         // Name each ticket with a different number
-        var template;
-        if (displayedTicket % 2 === 0) {
-            template = container.attr('data-prototype')
-                .replace(/__name__label__/g, 'Billet n°' + (displayedTicket + 1))
-                .replace(/__name__/g, displayedTicket)
-                .replace(/form-group/, 'col-sm-offset-1 col-sm-5 ticket-impair')
-            ;
-        } else {
-            template = container.attr('data-prototype')
-                .replace(/__name__label__/g, 'Billet n°' + (displayedTicket + 1))
-                .replace(/__name__/g, displayedTicket)
-                .replace(/form-group/, ' col-sm-5 ticket-pair')
-            ;
-        }
+        var template = container.attr('data-prototype')
+            .replace(/__name__label__/g, 'Billet n°' + (displayedTicket + 1))
+            .replace(/__name__/g, displayedTicket)
+            .replace(/form-group/, 'col-sm-push-1 col-sm-5 ticket')
+        ;
 
         var prototype = $(template);
         container.append(prototype);
