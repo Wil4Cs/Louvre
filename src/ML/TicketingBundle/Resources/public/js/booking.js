@@ -8,13 +8,6 @@ $(function () {
     // Find how many ticket(s) are displayed
     var displayedTicket = container.find(':input').length;
 
-    // Enable the number of tickets selector when a date of visit is selected
-    // This remove the temporary message
-    $(visitDaySelector).one('change', function () {
-        tickets.prop('disabled', false);
-        $('.temporary').remove();
-    });
-
     // Launch Jquery Validator Form
     $(tickets).click(function () {
         $.validate();
@@ -67,7 +60,7 @@ $(function () {
         // Count the basket's price when a birth date is selected on a ticket
         $(birthdaySelector).change(function () {
             totalPrice = countTotalPrice();
-            $('#basket').text(totalPrice);
+            $('#basket').text(totalPrice);//
         });
 
         // Count the basket's price depending the value of reduction's radio buttons
@@ -79,6 +72,14 @@ $(function () {
         totalPrice = countTotalPrice();
 
         $('#basket').text(totalPrice);
+    });
+
+    // Compute price if user change the visit day and had already filled ticket(s) birth date
+    $(visitDaySelector).change(function () {
+        if (displayedTicket > 0) {
+            var totalPrice = countTotalPrice();
+            $('#basket').text(totalPrice);
+        }
     });
 
     function addTicket(container) {
