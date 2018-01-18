@@ -26,7 +26,7 @@ class Bill
      * @ORM\Column(name="order_type", type="boolean")
      * @Assert\Type(
      *     type = "bool",
-     *     message = "{{value}} n'est pas de type {{type}}"
+     *     message = "{{ value }} n'est pas de type {{ type }}"
      * )
      */
     private $daily;
@@ -43,6 +43,7 @@ class Bill
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=128)
+     * @Assert\NotNull(message = "Ce champ ne peut être nul")
      * @Assert\Email(message = "Cette valeur n'est pas une adresse e-mail valide",
      *     checkMX = true,
      *     checkHost = true
@@ -72,8 +73,8 @@ class Bill
      * @Assert\Count(
      *     min = 1,
      *     max = 10,
-     *     minMessage = "Une commande doit comporter au minimum {{ value }} billet",
-     *     maxMessage = "Une commande ne peut comporter que {{ value }} billets maximum"
+     *     minMessage = "Une commande doit comporter au minimum {{ limit }} billet",
+     *     maxMessage = "Une commande ne peut comporter que {{ limit }} billets maximum"
      * )
      */
     private $tickets;
@@ -89,8 +90,9 @@ class Bill
      * @var \Datetime
      *
      * @ORM\Column(name="visit_day", type="date")
+     * @Assert\NotNull(message = "Ce champ ne peut être nul")
      * @Assert\Date(message = "Cette valeur n'est pas une date valide")
-     * @Assert\GreaterThanOrEqual("today UTC")
+     * @Assert\GreaterThanOrEqual("today", message = "Cette date doit être supérieure ou égale au {{ compared_value }}")
      */
     private $visitDay;
 

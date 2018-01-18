@@ -26,6 +26,7 @@ class BillType extends AbstractType
                 'html5' => false,
                 'attr' => ['class' => 'datepicker'],
                 'format' => 'dd/MM/yyyy',
+                'invalid_message' => 'le format de la date doit être dd/mm/yyyy'
             ))
             ->add('email', RepeatedType::class, array(
                 'type'              => EmailType::class,
@@ -41,6 +42,7 @@ class BillType extends AbstractType
                     'Journée' => true,
                     'Demi-journée' => false
                 ),
+                'invalid_message' => 'Cochez sans modifier la valeur!',
                 'expanded'=> true,
                 'multiple'=> false
             ))
