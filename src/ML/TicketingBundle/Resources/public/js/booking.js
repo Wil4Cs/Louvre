@@ -42,7 +42,7 @@ $(function () {
         // Configuration of the date picker
         $('.birthDatePicker').datepicker({
             dateFormat: "dd/mm/yy",
-            maxDate: 0,
+            maxDate: -1,
             minDate: "-110y",
             duration: "fast",
             monthNames: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
