@@ -3,6 +3,7 @@
 namespace ML\TicketingBundle\ComputePrice;
 
 use ML\TicketingBundle\Entity\Bill;
+use ML\TicketingBundle\RecoverData\MLRecoverData;
 
 class MLComputePrice
 {
@@ -18,16 +19,21 @@ class MLComputePrice
 
     public function givePrice(Bill $bill)
     {
+        // Get the day of visit
+        $visitDay = $bill->getVisitDay();
+        // Recover required data to test
+        $dataParameters = $this->dataTickets->recoverData();
+        $data = $dataParameters->ticket;
+
         foreach ($bill->getTickets() as $ticket) {
             $birthday = $ticket->getBirthday();
-            $visitDay = $bill->getVisitDay();
             $reduction = $ticket->getReduction();
-            $data = $this->dataTickets->recoverData();
 
-            // Find age of visitor and define it into a number
+            // Find age of visitor according to the day of visit and define it into a number
             $interval = $birthday->diff($visitDay);
             $year = $interval->format('%y');
 
+            // Sets the price according to age and the reduction
             if ($year < $data->teenager->age) {
                 $ticket->setPrice($data->baby->price);
             } elseif ($year < $data->normal->age) {
