@@ -1,15 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wilfriedcottineau
- * Date: 19/01/2018
- * Time: 10:21
- */
 
 namespace ML\TicketingBundle\Validator;
 
+use Symfony\Component\Validator\Constraint;
 
-class UnavailableDate
+/**
+ * @Annotation
+ */
+class UnavailableDate extends Constraint
 {
+    public $message = "Impossible de commander un billet pour ce jour ou cette date!";
 
+    public function validatedBy()
+    {
+        return 'ml_ticketing_unavailable_date';
+    }
 }

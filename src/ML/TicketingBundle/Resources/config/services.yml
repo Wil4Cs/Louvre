@@ -5,7 +5,7 @@ services:
             - "@ml_ticketing.recover_data"
 
     ml_ticketing.recover_data:
-        class: ML\TicketingBundle\ComputePrice\MLRecoverData
+        class: ML\TicketingBundle\RecoverData\MLRecoverData
 
     ml_ticketing.stripe_service:
         class: ML\TicketingBundle\StripeService\MLStripeService
@@ -22,6 +22,13 @@ services:
             - "@ml_ticketing.bill_mailer"
         tags:
             - { name: doctrine.event_listener, event: postPersist }
+
+    ml_ticketing.validator_unavailable_date:
+        class: ML\TicketingBundle\Validator\UnavailableDateValidator
+        arguments:
+            - "@ml_ticketing.recover_data"
+        tags:
+            - { name:  validator.constraint_validator, alias: ml_ticketing_unavailable_date }
 
 ## Service parameters for TicketingBundle only
 parameters:

@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use ML\TicketingBundle\Validator\UnavailableDate;
 
 /**
  * Bill
@@ -93,6 +94,7 @@ class Bill
      * @Assert\NotNull(message = "Ce champ ne peut être nul")
      * @Assert\Date(message = "Cette valeur n'est pas une date valide")
      * @Assert\GreaterThanOrEqual("today", message = "Cette date doit être supérieure ou égale au {{ compared_value }}")
+     * @UnavailableDate()
      */
     private $visitDay;
 
@@ -103,24 +105,6 @@ class Bill
     {
         $this->date = new \DateTime();
         $this->tickets = new ArrayCollection();
-    }
-
-    /**
-     * Validate if someone try to order a daily ticket after 2pm (14:00:00)
-     *
-     * @Assert\IsTrue(message="Impossible de commander un billet Journée pour aujourd'hui après 14h")
-     */
-    public function isDate()
-    {
-        $todayDate = $this->date->format('d m Y');
-        $todayHour = $this->date->format('H');
-        $visitDate = $this->visitDay->format('d m Y');
-
-        if ($todayDate === $visitDate && $todayHour >= 14 && $this->daily === true) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     /**
