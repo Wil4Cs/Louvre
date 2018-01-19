@@ -50,6 +50,7 @@ $(function () {
             var dayMonth = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2);
 
             // Check if date(s) && week day(s) exist to disable it in the date picker
+            // It returns -1 when it doesn't find a match, O when match.
             if ($.inArray(dayMonth, pickerParameters.datesOff) < 0 && $.inArray(currentWeekDay, pickerParameters.daysOff) < 0) {
                 return [true, "", "Réserver!"];
             } else {
