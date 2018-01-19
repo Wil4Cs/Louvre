@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraint;
  */
 class UnavailableDate extends Constraint
 {
-    public $message = "Impossible de commander un billet pour ce jour ou cette date!";
+    public $message = "Impossible de commander un billet pour ce jour ou cette date, ni après 14h pour le jour même!";
 
     public function validatedBy()
     {
