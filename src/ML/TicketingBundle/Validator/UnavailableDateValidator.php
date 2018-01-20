@@ -27,23 +27,13 @@ class UnavailableDateValidator extends ConstraintValidator
         $dateFormat = $value->format('d-m-Y');
         setlocale(LC_TIME, "fr_FR");
         $visitDay = strtolower(strftime("%A", strtotime($dateFormat)));
-        // Convert date of today in french format & get the hour
-        $todayDay = date('d-m-Y');
-        $todayHour = date('H:i:s');
-        // Recover required data to test
+        // Recover required data
         $data = $this->recoverData->recoverData();
         $daysOff = $data->daysOff;
         $datesOff = $data->datesOff;
-        $closingTime = $data->closingTime;
 
         // Check days & date where museum is closed
         if (in_array($visitDay, $daysOff ) || in_array($visitDate, $datesOff)) {
-
-            $this->context->addViolation($constraint->message);
-        }
-
-        // In case of order for today, check also the time
-        if ($todayDay === $dateFormat && $todayHour > $closingTime) {
 
             $this->context->addViolation($constraint->message);
         }
