@@ -1,15 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wilfriedcottineau
- * Date: 20/01/2018
- * Time: 07:51
- */
 
 namespace ML\TicketingBundle\Validator;
 
+use Symfony\Component\Validator\Constraint;
 
-class AfterHour
+/**
+ * @Annotation
+ */
+class AfterHour extends Constraint
 {
+    public $message = "Vous ne pouvez commander un billet journée pour le jour même après 14h00.";
 
+    public function validatedBy()
+    {
+        return "ml_ticketing_after_hour";
+    }
 }

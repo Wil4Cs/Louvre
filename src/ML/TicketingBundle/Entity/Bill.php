@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use ML\TicketingBundle\Validator\UnavailableDate;
+use ML\TicketingBundle\Validator\AfterHour;
 
 /**
  * Bill
@@ -25,6 +26,7 @@ class Bill
      * @var bool
      *
      * @ORM\Column(name="order_type", type="boolean")
+     * @AfterHour()
      * @Assert\Type(
      *     type = "bool",
      *     message = "{{ value }} n'est pas de type {{ type }}"

@@ -30,6 +30,15 @@ services:
         tags:
             - { name:  validator.constraint_validator, alias: ml_ticketing_unavailable_date }
 
+    ml_ticketing.validator_after_hour:
+        class: ML\TicketingBundle\Validator\AfterHourValidator
+        arguments:
+            - "@request_stack"
+            - "@ml_ticketing.recover_data"
+
+        tags:
+            - { name:  validator.constraint_validator, alias: ml_ticketing_after_hour }
+
 ## Service parameters for TicketingBundle only
 parameters:
     ## Maximum accommodation capacity for the museum in number of pax
