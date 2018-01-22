@@ -64,9 +64,9 @@ class Bill
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="serial_number", type="bigint", unique=true)
+     * @ORM\Column(name="serial_number", type="string", length=128, unique=true)
      */
     private $serialNumber;
 

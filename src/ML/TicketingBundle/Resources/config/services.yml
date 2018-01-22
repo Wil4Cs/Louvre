@@ -8,7 +8,9 @@ services:
         class: ML\TicketingBundle\RecoverData\MLRecoverData
 
     ml_ticketing.stripe_service:
-        class: ML\TicketingBundle\StripeService\MLStripeService
+            class: ML\TicketingBundle\StripeService\MLStripeService
+            arguments:
+                - "@request_stack"
 
     ml_ticketing.bill_mailer:
         class: ML\TicketingBundle\Email\BillMailer

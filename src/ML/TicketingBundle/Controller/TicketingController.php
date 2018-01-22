@@ -31,21 +31,23 @@ class TicketingController extends Controller
 
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Find quantity of tickets for a day
             $quantityByDay = $em->getRepository('MLTicketingBundle:Bill')->countTicketsByDay($bill->getVisitDay());
 
+            // Check if maximum accommodation capacity is reached
             if ($quantityByDay > $this->getParameter('maxCapacity')) {
                 $request->getSession()->getFlashBag()->add('full', 'Complet pour le '.$bill->getVisitDay()->format('d-m-Y'));
 
             } else {
+                // Find and set the correct price for each ticket
                 $this->get('ml_ticketing.compute_price')->givePrice($bill);
-                $amount = $bill->getTotalPrice();
-                $stripeToken = $_POST['stripeToken'];
 
-                if ($this->get('ml_ticketing.stripe_service')->validCharge($stripeToken, $amount) === false) {
+                // Check if something wrong happened during payment process
+                if ($this->get('ml_ticketing.stripe_service')->validCharge($bill) === false) {
                     $request->getSession()->getFlashBag()->add('noValidCharge', 'Une erreur lors du paiement est survenue!');
 
                 } else {
-                    $bill->setStripeToken($stripeToken);
                     $em->persist($bill);
                     $em->flush();
                     $request->getSession()->getFlashBag()->add('success', 'Votre commande a bien été prise en compte.');
