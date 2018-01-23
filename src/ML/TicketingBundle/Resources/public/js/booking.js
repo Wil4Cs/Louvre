@@ -167,4 +167,21 @@ $(function () {
             }
         }
     }
+
+    function ajaxCall() {
+        var dataObject = null;
+        // Ask  parameters.json for the date picker and store it in dataObject
+        $.ajax({
+            'async': false,
+            'dataType': 'json',
+            'url': "/data/parameters.json",
+            'success': function (data) {
+                dataObject = data;
+            },
+            error: function () {
+                alert('La requête n\'a pas abouti');
+            }
+        });
+        return dataObject;
+    }
 });

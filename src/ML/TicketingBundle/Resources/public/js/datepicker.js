@@ -3,22 +3,20 @@ $(function () {
     // Add an readonly attribute on date field to disable input by keyboard
     $('#ml_ticketingbundle_bill_visitDay').attr('readonly', 'readonly');
 
-    function ajaxCall() {
-        var dataObject = null;
-        // Ask  parameters.json for the date picker and store it in dataObject
-        $.ajax({
-            'async': false,
-            'dataType': 'json',
-            'url': "../../data/parameters.json",
-            'success': function (data) {
-                dataObject = data;
-            },
-            error: function () {
-                alert('La requête n\'a pas abouti');
-            }
-        });
-        return dataObject;
-    }
+    var pickerParameters = null;
+
+    // Ask  parameters.json for the date picker and store it in pickerParameters
+    $.ajax({
+        'async': false,
+        'dataType': 'json',
+        'url': "/data/parameters.json",
+        'success': function (data) {
+            pickerParameters = data;
+        },
+        error: function () {
+            alert('La requête n\'a pas abouti');
+        }
+    });
 
     // Configure the date picker
     $('.datepicker').datepicker({
@@ -51,7 +49,6 @@ $(function () {
             // Return the date in 2 digit format dd-mm. E.g. 01/01 for the 1st january instead of 1/1
             var dayMonth = ('0' + date.getDate()).slice(-2) + '/' + ('0' + (date.getMonth() + 1)).slice(-2);
 
-            var pickerParameters = ajaxCall();
             // Check if date(s) && week day(s) exist to disable it in the date picker
             // It returns -1 when it doesn't find a match, O when match.
             if ($.inArray(dayMonth, pickerParameters.datesOff) < 0 && $.inArray(currentWeekDay, pickerParameters.daysOff) < 0) {
