@@ -18,7 +18,6 @@
 /web/bundles/
 src/ML/TicketingBundle/Tests/
 src/ML/CoreBundle/Tests/
-.gitignore
 var/
 
 ### PhpStorm ###
