@@ -32,11 +32,12 @@ class TicketingController extends Controller
         if($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            // Find quantity of tickets for a day
+            // Find quantity of tickets for a day and add the number of tickets for this order
             $quantityByDay = $em->getRepository('MLTicketingBundle:Bill')->countTicketsByDay($bill->getVisitDay());
+            $totalWithOrder = $quantityByDay + count($bill->getTickets());
 
             // Check if maximum accommodation capacity is reached
-            if ($quantityByDay > $this->getParameter('maxCapacity')) {
+            if ($totalWithOrder > $this->getParameter('maxCapacity')) {
                 $request->getSession()->getFlashBag()->add('full', 'Complet pour le '.$bill->getVisitDay()->format('d-m-Y'));
 
             } else {
