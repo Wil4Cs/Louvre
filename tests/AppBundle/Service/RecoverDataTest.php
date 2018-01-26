@@ -12,6 +12,7 @@ class RecoverDataTest extends KernelTestCase
         $this->service = $kernel->getContainer()->get('ml_ticketing.recover_data');
     }
 
+    /** TEST */
     public function testRecoverData()
     {
         $data = $this->service->recoverData();
