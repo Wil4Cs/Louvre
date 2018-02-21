@@ -16,7 +16,7 @@ Vous avez deux solutions pour le faire :
  
     *   Toujours dans le terminal, placez-vous à la racine du projet.
 
-2. Via le téléchargement du code source en une archive ZIP, à cette adresse : https://github.com/Wil4Cs/louvre.git
+2. Via le téléchargement du code source en une archive ZIP, à cette adresse : [lien](https://github.com/Wil4Cs/Louvre/archive/master.zip)
 
     * Décompressez ce fichier et placez-le dans le répertoire prêt à recevoir l'application.
     * Ouvrez votre terminal et placez-vous à la racine du projet fraichement créé.
